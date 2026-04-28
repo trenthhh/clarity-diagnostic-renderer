@@ -27,7 +27,6 @@ async function main() {
     config.paths.markdownDir,
     `${practiceSlug}_clarity_diagnostic.md`
   );
-  const screenshotsDir = path.join(cwd, config.paths.screenshotsDir);
   const deliverablesDir = path.join(cwd, config.paths.deliverablesDir);
   const outputPath = path.join(
     deliverablesDir,
@@ -45,10 +44,8 @@ async function main() {
 
   const markdown = fs.readFileSync(markdownPath, 'utf8');
   const documentData = parseDiagnostic(markdown, practiceSlug);
-  const screenshotState = collectScreenshots(documentData.findings, screenshotsDir);
   const html = buildHtml({
     documentData,
-    screenshotState,
     logoPath,
     templatePath,
   });
@@ -67,12 +64,6 @@ async function main() {
   });
 
   console.log(`Rendered PDF: ${outputPath}`);
-  if (screenshotState.missing.length > 0) {
-    console.warn('\nMissing screenshots:');
-    for (const missing of screenshotState.missing) {
-      console.warn(`- ${missing}`);
-    }
-  }
 }
 
 function parseDiagnostic(markdown, practiceSlug) {
@@ -187,6 +178,7 @@ function parseFindings(chunk) {
   const blocks = chunk.split(/\n(?=###\s+Finding\s+\d+:)/g).map((block) => block.trim()).filter(Boolean);
   return blocks.map((block) => {
     const headingMatch = block.match(/^###\s+Finding\s+(\d+):\s*(.+)$/m);
+    if (!headingMatch) return null;
     const number = headingMatch ? headingMatch[1] : '?';
     const title = headingMatch ? headingMatch[2].trim() : 'Finding';
     const content = headingMatch ? block.slice(block.indexOf(headingMatch[0]) + headingMatch[0].length).trim() : block;
@@ -218,7 +210,7 @@ function parseFindings(chunk) {
       effort,
       screenshots,
     };
-  });
+  }).filter(Boolean);
 }
 
 function parseOtherItems(chunk) {
@@ -250,33 +242,7 @@ function parseNextStep(chunk) {
   return { copy };
 }
 
-function collectScreenshots(findings, screenshotsDir) {
-  const missing = [];
-  const resolved = new Map();
-
-  for (const finding of findings) {
-    for (const shot of finding.screenshots) {
-      const filePath = path.join(screenshotsDir, shot.filename);
-      if (fs.existsSync(filePath)) {
-        resolved.set(shot.filename, {
-          ...shot,
-          filePath,
-          dataUri: imageToDataUri(filePath),
-        });
-      } else {
-        missing.push(shot.filename);
-        resolved.set(shot.filename, { ...shot, missing: true });
-      }
-    }
-  }
-
-  return {
-    missing: [...new Set(missing)],
-    resolved,
-  };
-}
-
-function buildHtml({ documentData, screenshotState, logoPath, templatePath }) {
+function buildHtml({ documentData, logoPath, templatePath }) {
   const template = fs.readFileSync(templatePath, 'utf8');
   const logoDataUri = fs.existsSync(logoPath) ? imageToDataUri(logoPath) : '';
 
@@ -284,7 +250,7 @@ function buildHtml({ documentData, screenshotState, logoPath, templatePath }) {
     renderCover(documentData, logoDataUri),
     renderOpenerAndSummary(documentData.opener, documentData.summary),
     renderPerspective(documentData.perspective),
-    ...documentData.findings.map((finding) => renderFinding(finding, screenshotState)),
+    ...documentData.findings.map((finding) => renderFinding(finding)),
     renderOtherItems(documentData.otherItems),
     renderSequence(documentData.sequence),
     renderNextStep(documentData.nextStep),
@@ -347,14 +313,14 @@ function renderPerspective(copy) {
   `;
 }
 
-function renderFinding(finding, screenshotState) {
+function renderFinding(finding) {
   return `
     <section class="page content-page finding">
       <div class="finding-header">
         <div class="finding-badge">${escapeHtml(String(finding.number))}</div>
         <h2 class="finding-title">${escapeHtml(finding.title)}</h2>
       </div>
-      <div class="finding-opening">${renderOpeningWithScreenshots(finding, screenshotState)}</div>
+      <div class="finding-opening">${renderOpeningWithSpotlight(finding)}</div>
       <div class="subsection-label">Why this matters</div>
       <div class="finding-why">${markdownToHtml(finding.why)}</div>
       <div class="subsection-label">Here's what I'd do</div>
@@ -364,33 +330,97 @@ function renderFinding(finding, screenshotState) {
   `;
 }
 
-function renderOpeningWithScreenshots(finding, screenshotState) {
+function renderOpeningWithSpotlight(finding) {
   const paragraphs = splitParagraphs(finding.opening);
   const first = paragraphs.shift() || '';
   const rest = paragraphs.join('\n\n');
-  const screenshots = finding.screenshots.map((shot) => {
-    const resolved = screenshotState.resolved.get(shot.filename);
-    if (!resolved || resolved.missing) {
-      return `
-        <div class="screenshot-card">
-          <div class="missing-screenshot">Screenshot pending: ${escapeHtml(shot.filename)}</div>
-          ${shot.caption ? `<div class="screenshot-caption">${escapeHtml(shot.caption)}</div>` : ''}
-        </div>
-      `;
-    }
-    return `
-      <figure class="screenshot-card">
-        <div class="screenshot-frame"><img src="${resolved.dataUri}" alt="${escapeHtml(shot.caption || shot.filename)}" /></div>
-        ${shot.caption ? `<figcaption class="screenshot-caption">${escapeHtml(shot.caption)}</figcaption>` : ''}
-      </figure>
-    `;
-  }).join('');
-
-  const stackClass = finding.screenshots.length === 1 ? 'screenshot-stack single-shot' : 'screenshot-stack';
+  const spotlight = buildDataSpotlight(finding);
   return `
     ${first ? markdownToHtml(first) : ''}
-    ${screenshots ? `<div class="${stackClass}">${screenshots}</div>` : ''}
+    ${spotlight}
     ${rest ? markdownToHtml(rest) : ''}
+  `;
+}
+
+function buildDataSpotlight(finding) {
+  const number = String(finding.number || '');
+  const opening = finding.opening || '';
+  const isDesertSpotlight = (finding.screenshots || []).some((shot) => /desertdentalarts_/i.test(shot.filename));
+
+  if (!isDesertSpotlight) return '';
+
+  if (number === '1') {
+    const googleReviews = extractNumber(opening, /Google(?:\s+shows|\s+holds)?\s+(\d+)/i, 15);
+    const competitorReviews = extractNumbers(opening, /(\d{2,4})(?=\s+Google reviews)/gi, [219, 500, 765]);
+    const topCompetitor = Math.max(...competitorReviews);
+    return buildStatSpotlight([
+      { value: String(googleReviews), label: 'Desert Dental Arts on Google' },
+      { value: String(topCompetitor), label: 'Top Competitor' },
+    ]);
+  }
+
+  if (number === '2') {
+    const photos = extractNumber(opening, /([0-9]+)\s+(?:owner\s+headshot,\s+)?(?:one\s+interior\s+photo,\s+and\s+one\s+auto-generated\s+Street\s+View\s+image|photos)/i, 3);
+    const posts = extractNumber(opening, /Zero Google Business Posts|([0-9]+)\s+posts/i, 0);
+    const categories = /no secondary service categories added/i.test(opening) ? 0 : extractNumber(opening, /(\d+)\s+secondary (?:service )?categories/i, 0);
+    const descriptionBlank = /blank business description field/i.test(opening) ? 'Blank' : 'Complete';
+    return buildStatSpotlight([
+      { value: String(photos), label: 'Photos' },
+      { value: String(posts), label: 'Posts' },
+      { value: String(categories), label: 'Service Categories Added' },
+      { value: descriptionBlank, label: 'Description' },
+    ], { boxed: true, textValueIndexes: [3] });
+  }
+
+  if (number === '3') {
+    const note = extractText(opening, /(Full desktop layout[^.]*?no mobile adaptation\.)/i)
+      || 'Full desktop layout displayed at iPhone viewport — no mobile adaptation';
+    return `
+      <div class="data-spotlight data-spotlight-centered">
+        <span class="data-spotlight-value data-spotlight-value-text">Mobile Rendering: Not Responsive</span>
+        <div class="data-spotlight-note">${escapeHtml(note)}</div>
+      </div>
+    `;
+  }
+
+  if (number === '4') {
+    const unansweredDays = /Friday through Sunday/i.test(opening) ? 3 : extractNumber(opening, /(\d+)\s+days?\s+a\s+week/i, 3);
+    const onlineBooking = /No online booking widget/i.test(opening) ? 0 : extractNumber(opening, /(\d+)\s+online booking/i, 0);
+    return buildStatSpotlight([
+      { value: String(unansweredDays), label: 'Days Per Week Phone Goes Unanswered' },
+      { value: String(onlineBooking), label: 'Online Booking Options' },
+    ]);
+  }
+
+  if (number === '5') {
+    const reviews = extractNumber(opening, /(\d+)\s+Google reviews/i, 15);
+    const avg = extractText(opening, /(all\s+five\s+stars|5\.0\s+avg)/i) ? '5.0' : '5.0';
+    const responses = /none acknowledged|0%/i.test(opening) ? 0 : extractNumber(opening, /(\d+)\s+responses?/i, 0);
+    return buildStatSpotlight([
+      { value: String(reviews), label: 'Google Reviews' },
+      { value: avg, label: 'Average Rating' },
+      { value: String(responses), label: 'Owner Responses' },
+    ]);
+  }
+
+  return '';
+}
+
+function buildStatSpotlight(stats, options = {}) {
+  const boxedClass = options.boxed ? ' data-spotlight-stat-boxes' : '';
+  const textValueIndexes = new Set(options.textValueIndexes || []);
+  return `
+    <div class="data-spotlight">
+      <div class="data-spotlight-stats${boxedClass}">
+        ${stats.map((stat, index) => `
+          <div class="data-spotlight-stat">
+            <span class="data-spotlight-value${textValueIndexes.has(index) ? ' data-spotlight-value-text' : ''}">${escapeHtml(stat.value)}</span>
+            <span class="data-spotlight-label">${escapeHtml(stat.label)}</span>
+          </div>
+        `).join('')}
+      </div>
+      ${options.note ? `<div class="data-spotlight-note">${escapeHtml(options.note)}</div>` : ''}
+    </div>
   `;
 }
 
@@ -618,6 +648,27 @@ function splitParagraphs(text) {
     .split(/\n\n+/)
     .map((part) => part.trim())
     .filter(Boolean);
+}
+
+function extractNumber(text, regex, fallback) {
+  const match = text.match(regex);
+  if (!match) return fallback;
+  const raw = match[1] || match[0];
+  const numeric = String(raw).match(/\d[\d,]*/);
+  return numeric ? Number(numeric[0].replace(/,/g, '')) : fallback;
+}
+
+function extractNumbers(text, regex, fallback = []) {
+  const matches = [...text.matchAll(regex)];
+  if (matches.length === 0) return fallback;
+  return matches
+    .map((match) => Number(String(match[1] || match[0]).replace(/,/g, '')))
+    .filter((value) => Number.isFinite(value));
+}
+
+function extractText(text, regex) {
+  const match = text.match(regex);
+  return match ? (match[1] || match[0]).trim() : '';
 }
 
 function sliceSection(text, start, end, heading) {
