@@ -107,9 +107,9 @@ function parseDiagnostic(markdown, practiceSlug) {
     subtitle: coverInfo.subtitle,
     practiceName: coverInfo.practiceName,
     preparedByLine: coverInfo.preparedByLine,
-    opener: normalizeBlankLines(openerChunk),
-    summary: normalizeBlankLines(summaryChunk),
-    perspective: normalizeBlankLines(howChunk),
+    opener: parseStructuredContent(openerChunk),
+    summary: parseStructuredContent(summaryChunk, { allowGraphics: true }),
+    perspective: parseStructuredContent(howChunk, { allowGraphics: true }),
     findings,
     otherItems,
     sequence,
@@ -198,17 +198,13 @@ function parseFindings(chunk) {
       : '';
     const doRaw = doIndex >= 0 ? contentSansEffort.slice(doIndex + doHeading.length).trim() : '';
 
-    const screenshots = extractScreenshotPlaceholders(openingRaw);
-    const openingWithoutScreenshots = stripScreenshotLines(openingRaw);
-
     return {
       number,
       title,
-      opening: normalizeBlankLines(openingWithoutScreenshots),
-      why: normalizeBlankLines(whyRaw),
-      action: normalizeBlankLines(doRaw),
+      opening: parseStructuredContent(openingRaw, { allowGraphics: true }),
+      why: parseStructuredContent(whyRaw, { allowGraphics: true }),
+      action: parseStructuredContent(doRaw, { allowGraphics: true }),
       effort,
-      screenshots,
     };
   }).filter(Boolean);
 }
@@ -221,7 +217,7 @@ function parseOtherItems(chunk) {
 
 function parseSequence(chunk) {
   const sections = [];
-  const regex = /\*\*(.+?):\*\*([\s\S]*?)(?=(?:\n\n\*\*.+?:\*\*)|$)/g;
+  const regex = /\*\*(.+?):?\*\*([\s\S]*?)(?=(?:\n\n\*\*.+?:?\*\*)|$)/g;
   let match;
   while ((match = regex.exec(normalizeBlankLines(chunk)))) {
     const title = match[1].trim();
@@ -237,8 +233,14 @@ function parseSequence(chunk) {
 
 function parseNextStep(chunk) {
   const cleaned = normalizeBlankLines(chunk);
-  const ctaLine = cleaned.match(/^\[Book the Clarity Audit[^\]]*\]$/m);
-  const copy = ctaLine ? cleaned.replace(ctaLine[0], '').trim() : cleaned;
+  const copy = cleaned
+    .replace(/^\[Book the Clarity Audit[^\]]*\]\s*$/gim, '')
+    .replace(/^Trent Wehrhahn.*$/gim, '')
+    .replace(/^H-Cube Marketing.*$/gim, '')
+    .replace(/^trent@.*$/gim, '')
+    .replace(/^hcubemarketing\.com.*$/gim, '')
+    .replace(/\n{3,}/g, '\n\n')
+    .trim();
   return { copy };
 }
 
@@ -297,9 +299,9 @@ function renderCover(documentData, logoDataUri) {
 function renderOpenerAndSummary(opener, summary) {
   return `
     <section class="page content-page">
-      <div class="opener body-copy">${opener ? markdownToHtml(opener) : ''}</div>
+      <div class="opener body-copy">${renderStructuredContent(opener)}</div>
       <div class="section-rule"></div>
-      <div class="summary-callout">${markdownToHtml(summary)}</div>
+      <div class="summary-callout">${renderStructuredContent(summary)}</div>
     </section>
   `;
 }
@@ -308,7 +310,7 @@ function renderPerspective(copy) {
   return `
     <section class="page content-page">
       <h2 class="section-header">How I See This</h2>
-      <div class="body-copy">${markdownToHtml(copy)}</div>
+      <div class="body-copy">${renderStructuredContent(copy)}</div>
     </section>
   `;
 }
@@ -320,107 +322,123 @@ function renderFinding(finding) {
         <div class="finding-badge">${escapeHtml(String(finding.number))}</div>
         <h2 class="finding-title">${escapeHtml(finding.title)}</h2>
       </div>
-      <div class="finding-opening">${renderOpeningWithSpotlight(finding)}</div>
+      <div class="finding-opening">${renderStructuredContent(finding.opening)}</div>
       <div class="subsection-label">Why this matters</div>
-      <div class="finding-why">${markdownToHtml(finding.why)}</div>
+      <div class="finding-why">${renderStructuredContent(finding.why)}</div>
       <div class="subsection-label">Here's what I'd do</div>
-      <div class="finding-do">${markdownToHtml(finding.action)}</div>
+      <div class="finding-do">${renderStructuredContent(finding.action)}</div>
       ${finding.effort ? `<div class="effort-tag">Effort: ${escapeHtml(finding.effort.replace(/^Effort:\s*/i, ''))}</div>` : ''}
     </section>
   `;
 }
 
-function renderOpeningWithSpotlight(finding) {
-  const paragraphs = splitParagraphs(finding.opening);
-  const first = paragraphs.shift() || '';
-  const rest = paragraphs.join('\n\n');
-  const spotlight = buildDataSpotlight(finding);
+function renderStructuredContent(content) {
+  if (!content) return '';
+  if (typeof content === 'string') return markdownToHtml(content);
+  return (content.blocks || []).map((block) => {
+    if (block.type === 'markdown') return markdownToHtml(block.value);
+    if (block.type === 'pull_quote') return renderPullQuote(block);
+    if (block.type === 'stat_callout') return renderStatCallout(block);
+    if (block.type === 'sidebar') return renderSidebar(block);
+    if (block.type === 'graphic') return renderGraphic(block);
+    return '';
+  }).join('\n');
+}
+
+function renderPullQuote(block) {
+  return `<div class="pull-quote">${escapeHtml(block.text)}</div>`;
+}
+
+function renderStatCallout(block) {
   return `
-    ${first ? markdownToHtml(first) : ''}
-    ${spotlight}
-    ${rest ? markdownToHtml(rest) : ''}
+    <div class="stat-callout">
+      <span class="stat-callout-number">${escapeHtml(block.value)}</span>
+      <span class="stat-callout-label">${escapeHtml(block.label)}</span>
+      <div class="stat-callout-explanation">${escapeHtml(block.explanation)}</div>
+    </div>
   `;
 }
 
-function buildDataSpotlight(finding) {
-  const number = String(finding.number || '');
-  const opening = finding.opening || '';
-  const isDesertSpotlight = (finding.screenshots || []).some((shot) => /desertdentalarts_/i.test(shot.filename));
+function renderSidebar(block) {
+  return `<div class="content-sidebar">${escapeHtml(block.text)}</div>`;
+}
 
-  if (!isDesertSpotlight) return '';
-
-  if (number === '1') {
-    const googleReviews = extractNumber(opening, /Google(?:\s+shows|\s+holds)?\s+(\d+)/i, 15);
-    const competitorReviews = extractNumbers(opening, /(\d{2,4})(?=\s+Google reviews)/gi, [219, 500, 765]);
-    const topCompetitor = Math.max(...competitorReviews);
-    return buildStatSpotlight([
-      { value: String(googleReviews), label: 'Desert Dental Arts on Google' },
-      { value: String(topCompetitor), label: 'Top Competitor' },
-    ]);
-  }
-
-  if (number === '2') {
-    const photos = extractNumber(opening, /([0-9]+)\s+(?:owner\s+headshot,\s+)?(?:one\s+interior\s+photo,\s+and\s+one\s+auto-generated\s+Street\s+View\s+image|photos)/i, 3);
-    const posts = extractNumber(opening, /Zero Google Business Posts|([0-9]+)\s+posts/i, 0);
-    const categories = /no secondary service categories added/i.test(opening) ? 0 : extractNumber(opening, /(\d+)\s+secondary (?:service )?categories/i, 0);
-    const descriptionBlank = /blank business description field/i.test(opening) ? 'Blank' : 'Complete';
-    return buildStatSpotlight([
-      { value: String(photos), label: 'Photos' },
-      { value: String(posts), label: 'Posts' },
-      { value: String(categories), label: 'Service Categories Added' },
-      { value: descriptionBlank, label: 'Description' },
-    ], { boxed: true, textValueIndexes: [3] });
-  }
-
-  if (number === '3') {
-    const note = extractText(opening, /(Full desktop layout[^.]*?no mobile adaptation\.)/i)
-      || 'Full desktop layout displayed at iPhone viewport — no mobile adaptation';
-    return `
-      <div class="data-spotlight data-spotlight-centered">
-        <span class="data-spotlight-value data-spotlight-value-text">Mobile Rendering: Not Responsive</span>
-        <div class="data-spotlight-note">${escapeHtml(note)}</div>
-      </div>
-    `;
-  }
-
-  if (number === '4') {
-    const unansweredDays = /Friday through Sunday/i.test(opening) ? 3 : extractNumber(opening, /(\d+)\s+days?\s+a\s+week/i, 3);
-    const onlineBooking = /No online booking widget/i.test(opening) ? 0 : extractNumber(opening, /(\d+)\s+online booking/i, 0);
-    return buildStatSpotlight([
-      { value: String(unansweredDays), label: 'Days Per Week Phone Goes Unanswered' },
-      { value: String(onlineBooking), label: 'Online Booking Options' },
-    ]);
-  }
-
-  if (number === '5') {
-    const reviews = extractNumber(opening, /(\d+)\s+Google reviews/i, 15);
-    const avg = extractText(opening, /(all\s+five\s+stars|5\.0\s+avg)/i) ? '5.0' : '5.0';
-    const responses = /none acknowledged|0%/i.test(opening) ? 0 : extractNumber(opening, /(\d+)\s+responses?/i, 0);
-    return buildStatSpotlight([
-      { value: String(reviews), label: 'Google Reviews' },
-      { value: avg, label: 'Average Rating' },
-      { value: String(responses), label: 'Owner Responses' },
-    ]);
-  }
-
+function renderGraphic(block) {
+  if (block.graphicType === 'competitive_ranking') return renderCompetitiveRanking(block);
+  if (block.graphicType === 'comparison_stat') return renderComparisonStat(block);
+  if (block.graphicType === 'single_big_stat') return renderSingleBigStat(block);
+  if (block.graphicType === 'maps_pack') return renderMapsPack(block);
   return '';
 }
 
-function buildStatSpotlight(stats, options = {}) {
-  const boxedClass = options.boxed ? ' data-spotlight-stat-boxes' : '';
-  const textValueIndexes = new Set(options.textValueIndexes || []);
+function renderCompetitiveRanking(block) {
+  const maxValue = Math.max(...block.items.map((item) => item.value), 1);
   return `
-    <div class="data-spotlight">
-      <div class="data-spotlight-stats${boxedClass}">
-        ${stats.map((stat, index) => `
-          <div class="data-spotlight-stat">
-            <span class="data-spotlight-value${textValueIndexes.has(index) ? ' data-spotlight-value-text' : ''}">${escapeHtml(stat.value)}</span>
-            <span class="data-spotlight-label">${escapeHtml(stat.label)}</span>
+    <figure class="graphic-panel competitive-ranking">
+      <div class="ranking-rows">
+        ${block.items.map((item) => `
+          <div class="ranking-row">
+            <div class="ranking-name">${escapeHtml(item.name)}</div>
+            <div class="ranking-bar-track">
+              <div class="ranking-bar${item.highlight ? ' is-highlight' : ''}" style="width: ${Math.max(6, (item.value / maxValue) * 100)}%">
+                <span class="ranking-value">${escapeHtml(String(item.value))}</span>
+              </div>
+            </div>
           </div>
         `).join('')}
       </div>
-      ${options.note ? `<div class="data-spotlight-note">${escapeHtml(options.note)}</div>` : ''}
-    </div>
+      ${block.caption ? `<figcaption class="graphic-caption">${escapeHtml(block.caption)}</figcaption>` : ''}
+    </figure>
+  `;
+}
+
+function renderComparisonStat(block) {
+  return `
+    <figure class="graphic-panel comparison-stat">
+      <div class="comparison-stat-grid">
+        ${block.items.map((item, index) => `
+          <div class="comparison-stat-item${index === block.highlightIndex ? ' is-highlight' : ''}">
+            <span class="comparison-stat-value">${escapeHtml(item.value)}</span>
+            <span class="comparison-stat-label">${escapeHtml(item.label)}</span>
+          </div>
+        `).join('')}
+      </div>
+      ${block.caption ? `<figcaption class="graphic-caption">${escapeHtml(block.caption)}</figcaption>` : ''}
+    </figure>
+  `;
+}
+
+function renderSingleBigStat(block) {
+  return `
+    <figure class="graphic-panel single-big-stat">
+      <span class="single-big-stat-value">${escapeHtml(block.value)}</span>
+      <span class="single-big-stat-label">${escapeHtml(block.label)}</span>
+      ${block.context ? `<div class="single-big-stat-context">${escapeHtml(block.context)}</div>` : ''}
+      ${block.caption ? `<figcaption class="graphic-caption">${escapeHtml(block.caption)}</figcaption>` : ''}
+    </figure>
+  `;
+}
+
+function renderMapsPack(block) {
+  return `
+    <figure class="graphic-panel maps-pack-graphic">
+      <div class="maps-pack-list">
+        ${block.pack.map((item, index) => `
+          <div class="maps-pack-row">
+            <span class="maps-pack-pin">📍</span>
+            <span class="maps-pack-position">Pack ${index + 1}</span>
+            <span class="maps-pack-name">${escapeHtml(item.name)}</span>
+            <span class="maps-pack-value">${escapeHtml(String(item.value))}</span>
+          </div>
+        `).join('')}
+        <div class="maps-pack-row maps-pack-missing">
+          <span class="maps-pack-pin">—</span>
+          <span class="maps-pack-position">Not shown</span>
+          <span class="maps-pack-name">${escapeHtml(block.practice)}</span>
+        </div>
+      </div>
+      ${block.caption ? `<figcaption class="graphic-caption">${escapeHtml(block.caption)}</figcaption>` : ''}
+    </figure>
   `;
 }
 
@@ -608,30 +626,191 @@ function cubePath(x, y) {
     .join('');
 }
 
-function extractScreenshotPlaceholders(text) {
-  const shots = [];
-  const regexes = [
-    /^\[INSERT SCREENSHOT:\s*([^\]—]+?)\s*[—-]\s*Caption to use:\s*"([^"]+)"\]$/gim,
-    /^\[Screenshot:\s*([^\]—]+?)\s*[—-]\s*([^\]]+)\]$/gim,
-  ];
-  for (const regex of regexes) {
-    let match;
-    while ((match = regex.exec(text))) {
-      shots.push({
-        filename: match[1].trim(),
-        caption: (match[2] || '').trim().replace(/^"|"$/g, ''),
-      });
+function parseStructuredContent(text, options = {}) {
+  const normalized = normalizeBlankLines(text);
+  if (!normalized) return { blocks: [] };
+
+  const blocks = [];
+  const lines = normalized.split('\n');
+  const markdownBuffer = [];
+
+  const flushMarkdown = () => {
+    const value = normalizeBlankLines(markdownBuffer.join('\n'));
+    if (value) blocks.push({ type: 'markdown', value });
+    markdownBuffer.length = 0;
+  };
+
+  for (const line of lines) {
+    const marker = parseMarkerLine(line.trim(), options);
+    if (marker) {
+      flushMarkdown();
+      blocks.push(marker);
+    } else {
+      markdownBuffer.push(line);
     }
   }
-  return shots;
+
+  flushMarkdown();
+  return { blocks };
 }
 
-function stripScreenshotLines(text) {
-  return text
-    .replace(/^\[INSERT SCREENSHOT:[^\]]+\]$/gim, '')
-    .replace(/^\[Screenshot:[^\]]+\]$/gim, '')
-    .replace(/\n{3,}/g, '\n\n')
-    .trim();
+function parseMarkerLine(line, options = {}) {
+  if (!line) return null;
+
+  let match = line.match(/^\[PULL QUOTE:\s*"([^"]+)"\]$/i);
+  if (match) return { type: 'pull_quote', text: match[1].trim() };
+
+  match = line.match(/^\[STAT CALLOUT:\s*(.+?)\s+[—-]\s+(.+?)\s+[—-]\s+([^\]]+)\]$/i);
+  if (match) {
+    return {
+      type: 'stat_callout',
+      value: match[1].trim(),
+      label: match[2].trim(),
+      explanation: match[3].trim(),
+    };
+  }
+
+  match = line.match(/^\[SIDEBAR:\s*"([^"]+)"\]$/i);
+  if (match) return { type: 'sidebar', text: match[1].trim() };
+
+  if (options.allowGraphics) {
+    const graphic = extractGraphicMarker(line);
+    if (graphic) return graphic;
+  }
+
+  return null;
+}
+
+function extractGraphicMarker(line) {
+  const match = line.match(/^\[GRAPHIC:\s*([^\]—]+?)\s+[—-]\s+(.+?)(?:\s+[—-]\s+Highlight:\s*([^\]—]+?))?\s+[—-]\s+Caption:\s*"([^"]+)"\]$/i);
+  if (!match) return null;
+
+  const graphicType = match[1].trim();
+  const data = match[2].trim();
+  const highlight = (match[3] || '').trim();
+  const caption = match[4].trim();
+
+  if (graphicType === 'competitive_ranking') {
+    return {
+      type: 'graphic',
+      graphicType,
+      caption,
+      highlight,
+      items: parseGraphicPairs(data).map((item) => ({
+        ...item,
+        highlight: item.name === highlight,
+      })),
+    };
+  }
+
+  if (graphicType === 'comparison_stat') {
+    const items = parseComparisonStatData(data);
+    const highlightIndex = items.findIndex((item) => item.label === highlight || item.value === highlight || `${item.label}: ${item.value}` === highlight);
+    return {
+      type: 'graphic',
+      graphicType,
+      caption,
+      highlight,
+      items,
+      highlightIndex: highlightIndex >= 0 ? highlightIndex : 0,
+    };
+  }
+
+  if (graphicType === 'single_big_stat') {
+    const parsed = parseSingleBigStatData(data);
+    return {
+      type: 'graphic',
+      graphicType,
+      caption,
+      highlight,
+      ...parsed,
+    };
+  }
+
+  if (graphicType === 'maps_pack') {
+    return {
+      type: 'graphic',
+      graphicType,
+      caption,
+      highlight,
+      ...parseMapsPackData(data),
+    };
+  }
+
+  return null;
+}
+
+function parseGraphicPairs(data) {
+  return data.split(/\s*,\s*/).map((part) => {
+    const [name, value] = part.split(/\s*:\s*/);
+    return { name: (name || '').trim(), value: Number(String(value || '').replace(/[^\d.]/g, '')) || 0 };
+  }).filter((item) => item.name);
+}
+
+function parseComparisonStatData(data) {
+  return splitGraphicList(data).map((part) => {
+    const cleaned = part.replace(/^"|"$/g, '').trim();
+    const segments = cleaned.split(/\s+vs\s+/i);
+    if (segments.length === 2) return segments.map(parseComparisonSegment);
+    return [parseComparisonSegment(cleaned)];
+  }).flat();
+}
+
+function parseComparisonSegment(segment) {
+  const cleaned = segment.replace(/^"|"$/g, '').trim();
+  const match = cleaned.match(/^(.*?):\s*(.+)$/);
+  if (!match) return { label: cleaned, value: '' };
+  return { label: match[1].trim(), value: match[2].trim() };
+}
+
+function parseSingleBigStatData(data) {
+  const quotedParts = [...data.matchAll(/"([^"]+)"/g)].map((match) => match[1].trim());
+  const parts = quotedParts.length > 0 ? quotedParts : data.split(/\s+[—-]\s+/).map((part) => part.trim());
+  const value = (parts[0] || '').replace(/^"|"$/g, '').trim();
+  const label = (parts[1] || '').replace(/^"|"$/g, '').trim();
+  const captionContext = parts[2] || '';
+  const contextMatch = captionContext.match(/^Context:\s*(.+)$/i);
+  return {
+    value,
+    label,
+    context: contextMatch ? contextMatch[1].trim() : captionContext.replace(/^"|"$/g, '').trim(),
+  };
+}
+
+function parseMapsPackData(data) {
+  const entries = splitGraphicList(data);
+  const pack = [];
+  let practice = '';
+
+  for (const entry of entries) {
+    const trimmed = entry.trim();
+    let match = trimmed.match(/^Pack\d+:\s*(.+?)\s*\(([^)]+)\)$/i);
+    if (match) {
+      pack.push({ name: match[1].trim(), value: match[2].trim() });
+      continue;
+    }
+    match = trimmed.match(/^Practice:\s*(.+)$/i);
+    if (match) practice = match[1].trim();
+  }
+
+  return { pack, practice };
+}
+
+function splitGraphicList(value) {
+  const parts = [];
+  let current = '';
+  let inQuotes = false;
+  for (const char of value) {
+    if (char === '"') inQuotes = !inQuotes;
+    if (char === ',' && !inQuotes) {
+      parts.push(current.trim());
+      current = '';
+      continue;
+    }
+    current += char;
+  }
+  if (current.trim()) parts.push(current.trim());
+  return parts;
 }
 
 function inferPracticeName(title, practiceSlug) {
@@ -641,34 +820,6 @@ function inferPracticeName(title, practiceSlug) {
     .split(/[_-]/g)
     .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
     .join(' ');
-}
-
-function splitParagraphs(text) {
-  return normalizeBlankLines(text)
-    .split(/\n\n+/)
-    .map((part) => part.trim())
-    .filter(Boolean);
-}
-
-function extractNumber(text, regex, fallback) {
-  const match = text.match(regex);
-  if (!match) return fallback;
-  const raw = match[1] || match[0];
-  const numeric = String(raw).match(/\d[\d,]*/);
-  return numeric ? Number(numeric[0].replace(/,/g, '')) : fallback;
-}
-
-function extractNumbers(text, regex, fallback = []) {
-  const matches = [...text.matchAll(regex)];
-  if (matches.length === 0) return fallback;
-  return matches
-    .map((match) => Number(String(match[1] || match[0]).replace(/,/g, '')))
-    .filter((value) => Number.isFinite(value));
-}
-
-function extractText(text, regex) {
-  const match = text.match(regex);
-  return match ? (match[1] || match[0]).trim() : '';
 }
 
 function sliceSection(text, start, end, heading) {
