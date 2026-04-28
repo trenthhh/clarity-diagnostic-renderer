@@ -4,7 +4,7 @@
 
 Desert Dental Arts, Inc — Palm Desert, CA
 
-*Prepared by Trent Wehrhahn · April 2026*
+*Prepared by Trent Wehrhahn · H-Cube Marketing · April 2026*
 
 ---
 
@@ -54,7 +54,7 @@ The good news is that the assets required to fix this already exist. Patients ar
 
 PracticeMojo, the platform Desert Dental Arts uses to solicit patient feedback, shows 43 reviews at 5.0 stars. Google shows 15. No new Google reviews have appeared in the past two years. That gap — and that velocity — tells a specific story.
 
-[INSERT SCREENSHOT: desertdentalarts_maps_city_dentist.png — Caption to use: "Maps results for 'Palm Desert dentist' — Desert Dental Arts does not appear. Competitors with 219, 500, and 765 Google reviews hold the visible positions."]
+[GRAPHIC: competitive_ranking — Palm Desert Dental Center: 765, Portola Dental Group: 500, Desert Crossing Dental: 219, Desert Dental Arts: 15 — Highlight: Desert Dental Arts — Caption: "Google review count comparison: Desert Dental Arts vs. practices appearing in Palm Desert Maps results for 'Palm Desert dentist'"]
 
 PracticeMojo is doing its job: it is sending patients a review request, and patients are responding. But PracticeMojo is routing those reviews to its own platform — not to Google. PracticeMojo reviews do not appear in Google search results. They do not factor into Maps pack ranking. For the purpose of new patient discovery in Palm Desert, those 43 reviews do not exist where they need to.
 
@@ -64,7 +64,9 @@ PracticeMojo is doing its job: it is sending patients a review request, and pati
 
 Review count is the most visible competitive signal in the Google Maps pack — not star rating, but volume. Desert Dental Arts has a 5.0 average, better than several of the competitors that outrank it. The difference is not quality. It is Google-visible quantity. The three practices in the Maps pack for "Palm Desert dentist" hold 765, 500, and 219 Google reviews. At current velocity — effectively zero new Google reviews per month — the gap does not hold steady. It widens every month.
 
-This is also the highest-leverage single intervention in this entire diagnostic. Because the patients are already willing to review, because the infrastructure already exists, the fix is a redirection — not a rebuild.
+The patients are already willing to review. The infrastructure already exists. The only thing missing is the right target.
+
+[PULL QUOTE: "The fix is a redirection — not a rebuild."]
 
 **Here's what I'd do**
 
@@ -82,7 +84,7 @@ The 90-day goal: move from effectively zero new Google reviews per month to 8–
 
 Desert Dental Arts' Google Business Profile contains one owner headshot, one interior photo, and one auto-generated Street View image. A blank description field. Zero posts. A primary category of "Dentist" with no secondary service categories added.
 
-[INSERT SCREENSHOT: desertdentalarts_gbp_listing.png — Caption to use: "Desert Dental Arts' GBP listing — blank description, three photos, no posts, and a single generic category."]
+[GRAPHIC: comparison_stat — "Desert Dental Arts: 3 owner photos" vs "Local competitors: 50–200+ owner photos" — Caption: "Owner-uploaded photo count is a direct Maps ranking factor — Desert Dental Arts sits 72 photos below the 75-photo standard"]
 
 **Why this matters**
 
@@ -90,7 +92,9 @@ Desert Dental Arts' Google Business Profile contains one owner headshot, one int
 
 Each of these gaps is a distinct Maps ranking signal, and they compound. A blank description means Google cannot match this listing to searches for "Palm Desert family dentist" or "Palm Desert dental implants" — the practice's city name, services, and doctor's name appear nowhere in it. The photo deficit matters because photo count and recency are documented ranking factors. The absence of secondary service categories — implant dentistry, cosmetic dentistry, family dentistry — means the algorithm has no basis to surface this practice on any search more specific than "dentist."
 
-None of these fixes is technically difficult. The cumulative suppression they create is severe, and it has been accumulating for years.
+Each of these deficits is independently correctable in a matter of hours. Together, they explain why Desert Dental Arts has ranked nowhere across 17 years of operation.
+
+[PULL QUOTE: "None of these fixes is technically difficult. The cumulative suppression they create has been building for years."]
 
 **Here's what I'd do**
 
@@ -110,7 +114,7 @@ None of these fixes is technically difficult. The cumulative suppression they cr
 
 At iPhone viewport width, Desert Dental Arts' website renders the full desktop layout with no adaptation. Navigation displays all items in a single horizontal row at small text size. The hero image maintains desktop proportions. No hamburger menu is present. Mobile LCP is 3.3 seconds — above the 2.5-second Good threshold.
 
-[INSERT SCREENSHOT: desertdentalarts_homepage_mobile.png — Caption to use: "Desert Dental Arts' website rendered at iPhone viewport width — the full desktop layout appears with no mobile adaptation."]
+[PULL QUOTE: "At 390 pixels wide — standard iPhone width — the desktop menu doesn't collapse, the hero image doesn't scale, and there's no hamburger. It's a desktop site on a phone screen."]
 
 **Why this matters**
 
@@ -134,7 +138,7 @@ If GoDaddy's builder cannot deliver a functional mobile experience, this is the 
 
 The Contact page offers one patient action: "Call us and we'll get you the answer." No online booking widget. No appointment request form. No live chat. Office hours are Monday–Thursday, 8 AM–5 PM. Friday through Sunday: closed, with no digital fallback.
 
-[INSERT SCREENSHOT: desertdentalarts_appointment_page.png — Caption to use: "Desert Dental Arts' contact page — a phone call is the only available action, with no online booking path present."]
+[GRAPHIC: single_big_stat — "0" — "Online booking options" — Caption: "A phone call is the only available path — and the office is closed Friday, Saturday, and Sunday"]
 
 **Why this matters**
 
@@ -156,9 +160,9 @@ The four-day operating week is a clinical operations decision and not this diagn
 
 ### Finding 5: 15 reviews. All five stars. None acknowledged.
 
-None of the visible Google reviews for Desert Dental Arts have received an owner response. The most recent is approximately two years old. The oldest is six years old. Across the full visible review set: 0% response rate.
+None of the visible Google reviews for Desert Dental Arts have received an owner response. The most recent is approximately two years old. The oldest is six years old.
 
-[INSERT SCREENSHOT: desertdentalarts_gbp_reviews.png — Caption to use: "Desert Dental Arts' Google reviews — every review is five stars, and none have received an owner response."]
+[PULL QUOTE: "Fifteen five-star reviews. Six years' worth. Not one acknowledged."]
 
 **Why this matters**
 
@@ -188,7 +192,7 @@ Then do not let another review go unacknowledged. Set a weekly reminder: every F
 
 **The insurance page cannot answer the question it exists to answer.** "Do you take my insurance?" is the first question most prospective patients have. The current page contains only generic policy text — no carrier names, no in-network designation, no membership plan for uninsured patients. A carrier list, even partial, removes the most common pre-call friction and lets patients self-qualify.
 
-**Facebook has the wrong city listed.** The business listing shows "Hawthorne, CA 90250" — not Palm Desert. A five-minute correction. Left as-is, it limits local discoverability within Facebook's own search.
+**Facebook has the wrong city listed.** The business listing shows "Hawthorne, CA 90250" — not Palm Desert. A five-minute correction. Left as-is, it limits local discoverability within Facebook's own search and undermines the consistency Google expects across business listings.
 
 **Social has been dormant since 2016.** The last Facebook post was February 2016. The Instagram handle returns a 404. Social dormancy is the lowest-leverage gap in this diagnostic — it matters less than GBP completeness and review velocity — but it removes a channel for warming prospective patients once the visibility rebuild is underway.
 
@@ -228,3 +232,10 @@ Then do not let another review go unacknowledged. Set a weekly reminder: every F
 Everything in this audit is yours to implement. The fixes are spelled out, in order of impact. Most practices won't get to them — not because they don't matter, but because there's never time. If you'd rather have someone run them for you, the Clarity Audit is the next step. We'll go deeper on the things that need it, prioritize against your specific goals, and give you a 90-day plan you can hand off. No pressure either way — the audit you're holding is the audit, not the appetizer.
 
 [Book the Clarity Audit]
+
+---
+
+Trent Wehrhahn
+H-Cube Marketing
+trent@hcubemarketing.com
+hcubemarketing.com
