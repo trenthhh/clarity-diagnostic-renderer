@@ -78,7 +78,12 @@ async function main() {
 function parseDiagnostic(markdown, practiceSlug) {
   const normalized = markdown.replace(/\r\n/g, '\n');
   const lines = normalized.split('\n');
-  const cleanLines = lines.filter((line) => line.trim() !== '[COVER PAGE]' && line.trim() !== '*[Page 2]*');
+  const cleanLines = lines.filter((line) => {
+    const trimmed = line.trim();
+    return trimmed !== '[COVER PAGE]'
+      && trimmed !== '*[Page 2]*'
+      && !/^#{1,6}\s+\[.*\]\s*$/.test(trimmed);
+  });
   const text = cleanLines.join('\n');
 
   const section30 = text.indexOf('## The 30-Second Read');
@@ -124,7 +129,10 @@ function parseDiagnostic(markdown, practiceSlug) {
 function parseCover(chunk, practiceSlug) {
   const lines = chunk.split('\n').map((line) => line.trim()).filter(Boolean);
   const headingCandidates = lines.filter((line) => /^#{1,6}\s+/.test(line));
-  const titleLine = headingCandidates.find((line) => !/The 30-Second Read/i.test(line)) || '';
+  const titleLine = headingCandidates.find((line) => {
+    const stripped = line.replace(/^#{1,6}\s+/, '').trim();
+    return !/The 30-Second Read/i.test(line) && !/^\[.*\]$/.test(stripped);
+  }) || '';
   const title = titleLine.replace(/^#{1,6}\s+/, '').trim();
 
   const titleIndex = lines.findIndex((line) => line === titleLine.trim());
@@ -324,6 +332,7 @@ function renderOpenerAndSummary(opener, summary) {
   return `
     <section class="page content-page">
       <div class="opener body-copy">${opener ? markdownToHtml(opener) : ''}</div>
+      <div class="section-rule"></div>
       <div class="summary-callout">${markdownToHtml(summary)}</div>
     </section>
   `;
