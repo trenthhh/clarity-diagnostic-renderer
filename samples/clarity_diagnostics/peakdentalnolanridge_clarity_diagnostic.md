@@ -1,5 +1,13 @@
 # A World-Class Dentist Running a Practice No One Can Find — and a Facebook Page That Says It Closed in 2020
 
+**5 findings. The fixes. In order of impact.**
+
+Peak Dental Group — Nolanridge | Calgary NW, AB
+
+*Prepared by Trent Wehrhahn · H-Cube Marketing · April 2026*
+
+---
+
 I spent some time with Peak Dental Group's digital footprint this week. Here's what stood out.
 
 ---
@@ -48,7 +56,7 @@ I noticed that Peak Dental Group has 131 Google reviews after approximately 10 y
 
 **Why this matters**
 
-[STAT CALLOUT: 26% — Of the 500+ review standard for a 10-year practice — The portion accumulated without a solicitation system]
+[STAT CALLOUT: 26% — Of the 500-review standard for a 10-year practice — The portion accumulated without a solicitation system]
 
 The review count gap between Peak Dental and its nearest major competitors isn't a patient satisfaction problem — the 4.7-star rating rules that out. It's the gap you accumulate when a practice delivers excellent care without any mechanism to capture that experience in a form Google can see. Nolan Hill Dental, two kilometers from the Nolanridge location, has 1,061 reviews. Sarcee Dental has 1,087. Beacon Smiles Dental — the dominant NW Calgary practice by review authority — has 2,884. These practices are not better at dentistry. They have systems that turn every visit into digital proof.
 
