@@ -107,8 +107,6 @@ The page doesn't need to become a content hub immediately. The minimum viable st
 
 I noticed that Peak Dental Group's Google Business Profile is categorized as "Dentist" — the generic default. I also noticed that Aesthetic Dental Studio NW Calgary, a competitor with 83 Google reviews, ranks organically for "Calgary NW cosmetic dentist." Peak Dental has 131 reviews, offers the same cosmetic services, and does not appear.
 
-[GRAPHIC: maps_pack — Search: "Calgary NW cosmetic dentist" — Top 3: Aesthetic Dental Studio NW (83 reviews), Nosehill Dental Centre (391 reviews), Royal Vista Dental NW Calgary (511 reviews) — Highlight: Peak Dental Group — Caption: "Peak Dental offers cosmetic dentistry. It doesn't appear here. Aesthetic Dental Studio ranks with 83 reviews."]
-
 #### Why This Matters
 
 [STAT CALLOUT: 4 of 5 — Searches where Nosehill Dental (391 reviews) ranks organically — Peak Dental (131 reviews, 4.7★) ranks in 0 of 5]
@@ -179,8 +177,6 @@ I noticed that Dr. Sameet Gill — Founder and Clinical Director of Peak Dental 
 
 [GRAPHIC: single_big_stat — 0 — Discovery channels surfacing Dr. Gill's 2024 Dentist of the Year award — GBP description, Maps listing, homepage hero, paid ad copy, social content: all blank — Highlight: Peak Dental Group — Caption: "The credential exists. The distribution doesn't."]
 
-[STAT CALLOUT: 0 — Discovery channels where Dr. Gill's 2024 award is visible — GBP, Maps, paid ads, homepage hero: all blank]
-
 Trust is established before the first call. A patient comparing two practices in Google Maps makes a judgment from what they can see — review count, star rating, category, description, photos. Peak Dental currently presents as "4.7 stars, 131 reviews, Dentist." Nolan Hill Dental presents as "4.9 stars, 1,061 reviews, Dentist." Without other signals, Nolan Hill looks more established.
 
 Now imagine if Peak Dental's listing read: "Led by Dr. Sameet Gill — named Dentist of the Year in Canada in 2024." That credential doesn't need explanation. A patient doesn't need to understand the award body or the selection process. "Dentist of the Year in Canada" is a sentence that ends the comparison. No other NW Calgary dental practice holds an equivalent nationally or globally recognized credential. This is a differentiator with zero local competition — and it is currently invisible to every patient who finds this practice through any digital channel.
@@ -201,8 +197,6 @@ One LinkedIn post, one Instagram post. This is the kind of content that gets sha
 
 **Effort: Medium** — one afternoon of focused content work. The credential is real. The fix is distribution.
 
----
-
 ## Other Things I Noticed
 
 **The same-complex competitor is smaller — for now.** Nolan Ridge Dental operates at 255 Nolanridge Ct NW — the same complex as Peak Dental. They have 113 Google reviews to Peak Dental's 131 and a 4.7-star rating. Right now Peak Dental holds the review advantage in their own building. That gap erodes if Peak Dental doesn't build a solicitation system and Nolan Ridge does. Worth watching monthly.
@@ -212,8 +206,6 @@ One LinkedIn post, one Instagram post. This is the kind of content that gets sha
 **The 4.7-star rating is an asset, not a liability.** In a competitive Maps pack where most practices cluster at 4.8–4.9, the gap is small enough that volume and GBP optimization will matter more than the star rating itself. As reviews accumulate, the rating may improve naturally. Responding to every review — especially any critical ones — signals active engagement that prospective patients notice and Google credits.
 
 **Women-owned and LGBTQ+ friendly signals are in the GBP but not on the website.** These designations exist in the GBP listing, where some patients will see them. They should also appear on the website — on the homepage or About page, briefly and matter-of-factly. Some patients specifically filter for practices with these designations, and a website mention makes the signal findable regardless of how the patient arrives.
-
----
 
 ## How I'd Sequence the Fixes
 
@@ -247,8 +239,6 @@ One LinkedIn post, one Instagram post. This is the kind of content that gets sha
 - Post to GBP monthly at minimum — service education, team, patient outcomes (Finding 3)
 - Monitor Nolan Ridge Dental's review count monthly — protect the in-complex review advantage (Other Things)
 - Evaluate paid Maps ad spend quarterly — as organic presence builds, assess whether budget can shift or reduce (Cross-cutting)
-
----
 
 ## The Next Step
 
