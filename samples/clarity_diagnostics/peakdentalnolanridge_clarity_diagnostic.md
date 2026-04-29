@@ -38,15 +38,15 @@ The five findings below are sequenced from root cause to downstream consequence.
 
 ---
 
-## Finding 1
+## The Findings
 
-### A Decade of Patients — Without a System to Turn Them Into Proof
+### Finding 1: A Decade of Patients — Without a System to Turn Them Into Proof
 
 I noticed that Peak Dental Group has 131 Google reviews after approximately 10 years in operation. The practice has a 4.7-star rating — patients who visit clearly like what they find. The three most recent reviews I saw were from January and February 2026, suggesting a current velocity of around 2–3 new reviews per month.
 
 [GRAPHIC: competitive_ranking — Beacon Smiles Dental: 2884, Beddington Dental Clinic NW: 2172, Sarcee Dental: 1087, Nolan Hill Dental: 1061, Peak Dental Group: 131 — Highlight: Peak Dental Group — Caption: "Google review counts, NW Calgary dental practices, April 2026"]
 
-#### Why This Matters
+**Why this matters**
 
 [STAT CALLOUT: 26% — Of the 500+ review standard for a 10-year practice — The portion accumulated without a solicitation system]
 
@@ -56,7 +56,7 @@ Google's local ranking algorithm weights review volume and velocity heavily. A p
 
 [PULL QUOTE: "The patients are happy. The system just never asked them to say so."]
 
-#### Here's What I'd Do
+**Here's what I'd do**
 
 **Build the solicitation pipeline (weeks 1–2):**
 Most practice management systems support post-appointment automation. Set up an SMS or email that goes out 2–4 hours after appointment completion — not immediately, not the next morning — with a single sentence and a direct link to your Google review form. Short message: "Thanks for coming in today — if you have a moment, we'd love a Google review: [link]." One step. No friction.
@@ -67,19 +67,17 @@ The automation handles volume. The in-person ask handles patients who prefer it.
 **Respond to every review (ongoing):**
 Google gives ranking credit for owner responses, and personalized responses signal to prospective patients that the practice actually reads what people write. Aim to respond within 48 hours of every new review. Reference something specific from the review — a name, a procedure, a detail — rather than a generic thank-you.
 
-**Effort: Structural** — the highest-compounding action in this audit. Early velocity improvement within 30–60 days. Maps ranking movement within 60–90 days.
+**Effort:** Structural
 
 ---
 
-## Finding 2
-
-### The Facebook Page Has Told Patients the Clinic Is Closed for Six Years
+### Finding 2: The Facebook Page Has Told Patients the Clinic Is Closed for Six Years
 
 I noticed that Peak Dental Group's Facebook page — facebook.com/p/Peak-Dental-Group-100069083925272/ — is currently listed as "Permanently Closed." Based on available evidence, this designation has been in place since approximately 2020. The practice has operated 7 days a week continuously for 10 years. The Facebook page has 11 followers.
 
 [PULL QUOTE: "The practice is open every day of the week. Facebook says it shut down when the world went into lockdown — and has never been corrected."]
 
-#### Why This Matters
+**Why this matters**
 
 [STAT CALLOUT: ~6 years — Duration of the "Permanently Closed" Facebook status — While the practice operated 7 days a week throughout]
 
@@ -87,7 +85,7 @@ Every patient who receives a referral and checks Facebook before calling is told
 
 This isn't a reach gap or a missed engagement opportunity. It is active misdirection that has run for six years. The volume of lost patient opportunities is not measurable, but the mechanism is clear: anyone who touches this listing before calling is told not to bother.
 
-#### Here's What I'd Do
+**Here's what I'd do**
 
 This is the fastest fix in the audit. Here is the exact sequence:
 
@@ -97,17 +95,15 @@ Total time: **under 30 minutes. This can be done today, before any other fix in 
 
 The page doesn't need to become a content hub immediately. The minimum viable state is accurate status, accurate hours, a current photo so it doesn't look abandoned. Content strategy can follow. The status fix is urgent.
 
-**Effort: Quick win**
+**Effort:** Quick win
 
 ---
 
-## Finding 3
-
-### Google Can't Place Peak Dental for Implants, Invisalign, or Cosmetic Searches — Because the GBP Doesn't Know They Offer Them
+### Finding 3: Google Can't Place Peak Dental for Implants, Invisalign, or Cosmetic Searches — Because the GBP Doesn't Know They Offer Them
 
 I noticed that Peak Dental Group's Google Business Profile is categorized as "Dentist" — the generic default. I also noticed that Aesthetic Dental Studio NW Calgary, a competitor with 83 Google reviews, ranks organically for "Calgary NW cosmetic dentist." Peak Dental has 131 reviews, offers the same cosmetic services, and does not appear.
 
-#### Why This Matters
+**Why this matters**
 
 [STAT CALLOUT: 4 of 5 — Searches where Nosehill Dental (391 reviews) ranks organically — Peak Dental (131 reviews, 4.7★) ranks in 0 of 5]
 
@@ -117,7 +113,7 @@ When Google classifies a business for local search, GBP categories are among the
 
 [PULL QUOTE: "Aesthetic Dental Studio has 83 reviews and ranks for cosmetic searches. Peak Dental has 131 reviews and doesn't appear. That gap isn't about reviews."]
 
-#### Here's What I'd Do
+**Here's what I'd do**
 
 **GBP categories (30 minutes):**
 Log into Google Business Profile → Edit Profile → Business Category. Keep "Dentist" as primary. Add secondary categories: "Cosmetic Dentist," "Dental Implants Provider," "Invisalign Provider," "Emergency Dental Service," "Pediatric Dentist." Each secondary category expands the range of service searches the practice can appear for.
@@ -128,19 +124,17 @@ Write a 750-character description that leads with the practice's differentiators
 **GBP posts (monthly):**
 The April 22 post about Denture Implants is a good start — keep the cadence going. The next post should be about Dr. Gill's award: a photo, a short description of the recognition, a link to book. Active posting signals to Google that the listing is maintained, which factors into ranking. One post per month is the floor. Two to three is better.
 
-**Effort: Medium**
+**Effort:** Medium
 
 ---
 
-## Finding 4
-
-### The Practice Is Open 7 Days a Week — But Can't Capture a Patient Who Finds Them at 8 PM Saturday
+### Finding 4: The Practice Is Open 7 Days a Week — But Can't Capture a Patient Who Finds Them at 8 PM Saturday
 
 I noticed that Peak Dental Group's website offers a "Request Appointment" button that links to a contact form — not a real-time scheduling system. No self-scheduling platform was found on the site. The practice operates Monday through Sunday with evening hours Monday and Friday to 7 PM.
 
 [PULL QUOTE: "The practice has built physical availability that exceeds most competitors. The digital booking infrastructure doesn't match it."]
 
-#### Why This Matters
+**Why this matters**
 
 [STAT CALLOUT: 7 days — The practice is physically open — 0 hours — A patient can self-schedule outside staffed hours]
 
@@ -150,7 +144,7 @@ But the patient who discovers Peak Dental at 8 PM Saturday — through a Google 
 
 The current configuration creates a clean mismatch: the practice is operationally available when patients most need access, and digitally unavailable for booking during those same windows. The paid Maps ad sharpens this further — ad spend driving clicks that land on a form instead of a scheduling flow reduces the ROI of every paid-visibility dollar.
 
-#### Here's What I'd Do
+**Here's what I'd do**
 
 **Select a booking platform (week 1):**
 Jane App is the most widely used real-time booking platform in Canadian dental. It integrates with most Canadian practice management systems and supports online booking, appointment reminders, and patient intake. Alternatives include NexHealth and Dentrix Online Booking. Evaluate based on your current practice management system's integration options.
@@ -161,19 +155,17 @@ Set up appointment types, time slots, and provider availability. Build in a brie
 **Update every touchpoint:**
 Replace "Request Appointment" contact form links with the live booking URL. Add the booking link to the GBP profile (Google Business Profile supports a direct booking link field). Add it to Instagram bio and Facebook page once corrected per Finding 2. Goal: one click from discovery to booked appointment, regardless of channel or time.
 
-**Effort: Medium** — 2–4 weeks to implement correctly. Return is immediate once live.
+**Effort:** Medium
 
 ---
 
-## Finding 5
-
-### An Internationally Award-Winning Clinical Director Whose Credentials Don't Appear in Any Discovery Channel
+### Finding 5: An Internationally Award-Winning Clinical Director Whose Credentials Don't Appear in Any Discovery Channel
 
 I noticed that Dr. Sameet Gill — Founder and Clinical Director of Peak Dental Group — was named Dentist of the Year in Canada and Young Dentist of the Year globally at the 2024 Forttuna Global Excellence Awards. I also noticed that this credential appears on an interior page of the practice website and nowhere else in any discovery channel.
 
 [PULL QUOTE: "No other dental practice in NW Calgary holds this credential. It's sitting on a team page."]
 
-#### Why This Matters
+**Why this matters**
 
 [GRAPHIC: single_big_stat — 0 — Discovery channels surfacing Dr. Gill's 2024 Dentist of the Year award — GBP description, Maps listing, homepage hero, paid ad copy, social content: all blank — Highlight: Peak Dental Group — Caption: "The credential exists. The distribution doesn't."]
 
@@ -181,7 +173,7 @@ Trust is established before the first call. A patient comparing two practices in
 
 Now imagine if Peak Dental's listing read: "Led by Dr. Sameet Gill — named Dentist of the Year in Canada in 2024." That credential doesn't need explanation. A patient doesn't need to understand the award body or the selection process. "Dentist of the Year in Canada" is a sentence that ends the comparison. No other NW Calgary dental practice holds an equivalent nationally or globally recognized credential. This is a differentiator with zero local competition — and it is currently invisible to every patient who finds this practice through any digital channel.
 
-#### Here's What I'd Do
+**Here's what I'd do**
 
 **Today — GBP description:**
 Add "Led by Dr. Sameet Gill, DMD MBA — named Dentist of the Year in Canada and Young Dentist of the Year globally at the 2024 Forttuna Global Excellence Awards" to the first line of the GBP description. This is the single most valuable sentence this practice can put in front of new patients on Google.
@@ -195,7 +187,7 @@ Add the award credential to the homepage hero or the first section below it. Eve
 **This month — social content:**
 One LinkedIn post, one Instagram post. This is the kind of content that gets shared by colleagues, patients, and referring professionals. The credential does the work — it doesn't need elaborate production.
 
-**Effort: Medium** — one afternoon of focused content work. The credential is real. The fix is distribution.
+**Effort:** Medium
 
 ## Other Things I Noticed
 
