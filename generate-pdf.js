@@ -250,6 +250,7 @@ function buildHtml({ documentData, logoPath, templatePath }) {
 
   const content = [
     renderCover(documentData, logoDataUri),
+    '<div class="page-break"></div>',
     renderOpenerAndSummary(documentData.opener, documentData.summary),
     renderPerspective(documentData.perspective),
     ...documentData.findings.map((finding) => renderFinding(finding)),
