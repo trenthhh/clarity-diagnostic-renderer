@@ -56,7 +56,7 @@ Groove Dental is doing the hard part — the actual clinical work — at a genui
 
 I ran the five standard Maps searches for Edmonton: dentist, family dentist, cosmetic dentist, dental implants, Invisalign. Groove Dental does not appear in the top 3 on any of them. The practices that do — Gallery Dental, Northtown Dental Associates, Smiles Dental Group, Laurel Dental, Azarko Dental — share one thing: significantly larger Google review volumes. The Maps algorithm is not indifferent to review velocity. It uses it as a primary ranking signal.
 
-[GRAPHIC: competitive_ranking — data: Gallery Dental: 1400, Smiles Dental Group: 400+, Northtown Dental Associates: 300+, Groove Dental: 44 — Highlight: Groove Dental — Caption: "Edmonton dentist Maps pack — Google review volume by practice"]
+[GRAPHIC: competitive_ranking — Gallery Dental: 1400, Smiles Dental Group: 400, Northtown Dental Associates: 300, Groove Dental: 44 — Highlight: Groove Dental — Caption: "Edmonton dentist Maps pack — Google review volume by practice"]
 
 **Why this matters**
 
