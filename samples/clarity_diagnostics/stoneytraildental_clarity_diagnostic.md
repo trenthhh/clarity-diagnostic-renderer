@@ -77,11 +77,11 @@ Someone on your team should glance at the review dashboard every Monday. New rev
 
 Galaxy Dental is at 250 East Hills Square SE. You're at 185 East Hills Blvd SE. You offer the same services — implants, Invisalign, cosmetic dentistry, general care. You have the same 4.9-star quality rating. The only variable Google's algorithm acts on: their review count is 3,078. Yours is approximately 300.
 
-[GRAPHIC: competitive_ranking — data: "Galaxy Dental: 3,078 reviews" | "Calgary Smiles: 1,000+" | "East Hills Dental: ~est. 200 reviews" | "Stoney Trail Dental: ~300 reviews" — Highlight: Stoney Trail Dental — Caption: "Google review counts, East Hills / Calgary SE area — April 2026"]
+[GRAPHIC: competitive_ranking — Galaxy Dental: 3078, Calgary Smiles: 1000, East Hills Dental: 200, Stoney Trail Dental: 300 — Highlight: Stoney Trail Dental — Caption: "Google review counts, East Hills / Calgary SE area — April 2026"]
 
 **Why this matters**
 
-[GRAPHIC: maps_pack — data: "Calgary SE dentist" search — Position 1: Galaxy Dental 4.9★ (3,078) | Position 2: [Competitor] | Position 3: [Competitor] | Stoney Trail Dental: not visible — Caption: "Estimated Maps pack for 'Calgary SE dentist' — Stoney Trail absent from top 3 organic results"]
+[GRAPHIC: maps_pack — search: "Calgary SE dentist" — Position 1: Galaxy Dental 4.9★ (3078) — Position 2: Competitor — Position 3: Competitor — Stoney Trail Dental: not visible — Caption: "Estimated Maps pack for 'Calgary SE dentist' — Stoney Trail absent from top 3 organic results"]
 
 [STAT CALLOUT: 0 of 5 — Estimated Maps pack presence — Primary Calgary SE searches: "SE dentist," "SE family dentist," "SE implants," "SE cosmetic dentist," "SE Invisalign"]
 
