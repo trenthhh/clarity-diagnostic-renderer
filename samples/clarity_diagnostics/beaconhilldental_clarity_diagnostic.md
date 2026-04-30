@@ -60,11 +60,9 @@ The good news is that this is a solvable problem. The fixes are not complex. The
 
 I noticed that Beacon Hill Dental has no visible system for asking patients to leave a Google review after their appointment. The evidence is in the numbers: 196 reviews over approximately 35 years of operation works out to roughly half a review per month historically. The most recent reviews visible on third-party listings are from October 2025 — six months ago as of this audit. That suggests a current velocity of 1–3 new reviews per month at most.
 
-[GRAPHIC: comparison_stat — Beacon Hill Dental: 196 reviews | Beacon Smiles Dental: 1,573 reviews — Highlight: Beacon Hill Dental — Caption: "Two practices on the same street. One has a review solicitation system."]
-
 **Why this matters**
 
-[STAT CALLOUT: ~0.5/month — Historical review velocity — Industry standard for a healthy practice is 8–15 new reviews per month]
+[STAT CALLOUT: ~0.5/month / HISTORICAL REVIEW VELOCITY / Beacon Smiles Dental, 0.4 miles away, has 1,573 reviews]
 
 Google Maps rankings are influenced by review volume, recency, and velocity — not just rating. A practice that receives reviews slowly and sporadically gets treated by Google's algorithm as less relevant than a practice generating consistent monthly review activity. At the current pace, Beacon Hill Dental will add roughly 24–36 reviews over the next two years. At industry standard pace, a competitor will add 192–360 reviews in the same window.
 
@@ -109,8 +107,6 @@ The primary action is in Finding 1. Once the solicitation system is running, the
 
 One additional lever: if the practice has internal systems that track completed appointments or hygiene visits, use that list to send a one-time re-engagement message to patients seen in the last 12 months who haven't left a review. Frame it as an appreciation message: "We wanted to reach out and say thanks for being a patient. If you've had a good experience with us, we'd love it if you shared it on Google — it helps other Calgary families find us."
 
-[STAT CALLOUT: 12 months — Time to reach 300+ reviews — At 8–10 new reviews/month from a working solicitation system]
-
 **Effort: Structural (resolved by implementing Finding 1)**
 
 ---
@@ -153,11 +149,9 @@ Start publishing one GBP post per week. Each post should take 5–10 minutes. To
 
 I noticed that Beacon Hill Dental does not appear in Google Maps pack results for any of the five highest-value local dental searches: "Calgary dentist," "Calgary family dentist," "Calgary cosmetic dentist," "Calgary dental implants," or "Calgary Invisalign." The practice likely appears for hyper-local searches tied to the Beacon Hill neighbourhood — but that scope limits new patient discovery to people who already live within walking distance.
 
-[GRAPHIC: maps_pack — Search: "Calgary Invisalign" — Top 3: Beacon Smiles Dental, Dental Now Panorama, Sage Smiles Dental — Highlight: Beacon Hill Dental — Caption: "Beacon Hill offers Invisalign. It doesn't appear in Invisalign searches."]
-
 **Why this matters**
 
-[STAT CALLOUT: 5 of 5 — High-value searches with no Beacon Hill presence — The Maps pack is where new patients make their first decision]
+[STAT CALLOUT: 0 of 5 / SERVICE-SPECIFIC SEARCHES RANKED / Invisalign, implants, cosmetic, family, general — none in the Maps pack]
 
 The Maps pack is the most visible real estate in a local dental search. Three practices appear. Everyone else is invisible. For searches like "Calgary Invisalign" or "Calgary dental implants" — where a patient has already decided what service they want — not appearing in the top three is equivalent to not existing in that patient's decision process.
 
