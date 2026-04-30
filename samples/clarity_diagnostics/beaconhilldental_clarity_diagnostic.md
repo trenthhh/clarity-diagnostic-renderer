@@ -62,7 +62,7 @@ I noticed that Beacon Hill Dental has no visible system for asking patients to l
 
 **Why this matters**
 
-[STAT CALLOUT: ~0.5/month / HISTORICAL REVIEW VELOCITY / Beacon Smiles Dental, 0.4 miles away, has 1,573 reviews]
+[STAT CALLOUT: ~0.5/month — Historical review velocity — Beacon Smiles Dental, 0.4 miles away, has 1,573 reviews]
 
 Google Maps rankings are influenced by review volume, recency, and velocity — not just rating. A practice that receives reviews slowly and sporadically gets treated by Google's algorithm as less relevant than a practice generating consistent monthly review activity. At the current pace, Beacon Hill Dental will add roughly 24–36 reviews over the next two years. At industry standard pace, a competitor will add 192–360 reviews in the same window.
 
@@ -151,7 +151,7 @@ I noticed that Beacon Hill Dental does not appear in Google Maps pack results fo
 
 **Why this matters**
 
-[STAT CALLOUT: 0 of 5 / SERVICE-SPECIFIC SEARCHES RANKED / Invisalign, implants, cosmetic, family, general — none in the Maps pack]
+[STAT CALLOUT: 0 of 5 — Service-specific searches ranked — Invisalign, implants, cosmetic, family, general — none in the Maps pack]
 
 The Maps pack is the most visible real estate in a local dental search. Three practices appear. Everyone else is invisible. For searches like "Calgary Invisalign" or "Calgary dental implants" — where a patient has already decided what service they want — not appearing in the top three is equivalent to not existing in that patient's decision process.
 
@@ -197,11 +197,10 @@ Replace the current generic subhead with something that surfaces the practice's 
 
 This tells the new patient three things immediately: the practice is established, it's accessible, and it may be able to serve them in their preferred language.
 
-**New patient offer (coordinate with front desk):**
-Add a visible new patient offer to the homepage hero section and the booking flow. Options:
-- "New Patient Special — Comprehensive Exam + X-Rays — Ask about current pricing"
-- "New to the area? Ask about our new patient welcome package."
-- For high-margin services: "Considering dental implants or Invisalign? Book a complimentary consultation."
+**New patient offer (coordinate with front desk — and review with ADA&C first):**
+The goal is a clear, specific reason to book at this practice rather than the next result. That could be a first-visit package, a consultation for a specific service, or a welcome message for new patients to the area. The exact language matters: dental advertising in Alberta is regulated by the Alberta Dental Association & College, and the ADA&C has specific guidelines around promotional language, pricing claims, and what constitutes an inducement. Before publishing any new patient offer, the practice should review the proposed wording against the ADA&C advertising guidelines and run it past their professional association if there's any question. "New to the area? Ask about our new patient welcome package" is a safe framing. Any language that mentions pricing, free services, or complimentary appointments needs to clear that review first.
+
+The point isn't to avoid having an offer — it's to make sure the offer you publish doesn't create a compliance problem. The underlying intent (give a new patient a reason to choose you over the next practice) is sound.
 
 **Surface the multilingual differentiator:**
 Add a simple visual element to the homepage (a flags or language icons strip, or a short line in the hero) that makes the language capability immediately visible to a patient who speaks Mandarin, Punjabi, or Tagalog. This one change can meaningfully improve conversion for a segment of the local population that is actively searching for a practice that can communicate with them.
