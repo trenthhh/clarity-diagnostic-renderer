@@ -250,7 +250,6 @@ function buildHtml({ documentData, logoPath, templatePath }) {
 
   const content = [
     renderCover(documentData, logoDataUri),
-    '<div class="page-break"></div>',
     renderOpenerAndSummary(documentData.opener, documentData.summary),
     renderPerspective(documentData.perspective),
     ...documentData.findings.map((finding) => renderFinding(finding)),
@@ -299,7 +298,7 @@ function renderCover(documentData, logoDataUri) {
 
 function renderOpenerAndSummary(opener, summary) {
   return `
-    <section class="page content-page">
+    <section class="page content-page opener-page">
       <div class="opener body-copy">${renderStructuredContent(opener)}</div>
       <div class="section-rule"></div>
       <div class="summary-callout">${renderStructuredContent(summary)}</div>
