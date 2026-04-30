@@ -249,8 +249,8 @@ function buildHtml({ documentData, logoPath, templatePath }) {
   const logoDataUri = fs.existsSync(logoPath) ? imageToDataUri(logoPath) : '';
 
   const content = [
-    renderCover(documentData, logoDataUri, documentData.opener),
-    renderOpenerAndSummary(documentData.summary),
+    renderCover(documentData, logoDataUri),
+    renderOpenerAndSummary(documentData.opener, documentData.summary),
     renderPerspective(documentData.perspective),
     ...documentData.findings.map((finding) => renderFinding(finding)),
     renderOtherItems(documentData.otherItems),
@@ -280,11 +280,8 @@ function buildHtml({ documentData, logoPath, templatePath }) {
   );
 }
 
-function renderCover(documentData, logoDataUri, opener) {
+function renderCover(documentData, logoDataUri) {
   const cube = buildCubeSvgDataUri();
-  const openerHtml = opener && opener.length
-    ? `<div class="cover-intro">${renderStructuredContent(opener)}</div>`
-    : '';
   return `
     <section class="page cover">
       ${cube ? `<img class="cube-motif" src="${cube}" alt="" />` : ''}
@@ -295,14 +292,14 @@ function renderCover(documentData, logoDataUri, opener) {
       ${documentData.subtitle ? `<div class="cover-subhead">${escapeHtml(documentData.subtitle)}</div>` : ''}
       <div class="cover-practice">${escapeHtml(documentData.practiceName)}</div>
       ${documentData.preparedByLine ? `<div class="cover-meta">${escapeHtml(documentData.preparedByLine.replace(/\|/g, '·'))}</div>` : ''}
-      ${openerHtml}
     </section>
   `;
 }
 
-function renderOpenerAndSummary(summary) {
+function renderOpenerAndSummary(opener, summary) {
   return `
     <section class="page content-page">
+      <div class="opener body-copy">${renderStructuredContent(opener)}</div>
       <div class="summary-callout">${renderStructuredContent(summary)}</div>
     </section>
   `;
