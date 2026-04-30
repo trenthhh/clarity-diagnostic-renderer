@@ -27,6 +27,10 @@
       @page:first {
         margin: 0;
       }
+      @page cover-page {
+        size: Letter;
+        margin: 0;
+      }
 
       * { box-sizing: border-box; }
       html, body {
@@ -60,13 +64,12 @@
       .content-page {
       }
       .cover {
+        page: cover-page;
         height: 11in;
         padding-top: 0.72in;
         padding-right: 0.8in;
         padding-left: 0.72in;
         clip-path: inset(0);
-        break-after: page;
-        page-break-after: always;
       }
       .cover-logo {
         width: {{COVER_LOGO_WIDTH}}px;
