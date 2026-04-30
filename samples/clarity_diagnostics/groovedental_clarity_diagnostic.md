@@ -22,6 +22,8 @@ The problem is that almost none of it is visible to a patient searching in Edmon
 
 [STAT CALLOUT: 44 — Total Google reviews — Against a 250+ standard for a newer practice. Gallery Dental, the category leader in Edmonton, has crossed 1,400.]
 
+On the five highest-value local Maps searches — Edmonton dentist, family dentist, cosmetic, implants, Invisalign — Groove Dental appears in zero of them.
+
 The reason for that invisibility is not the quality of care. It is the absence of a system that converts patient satisfaction into digital proof. Forty-four reviews, at 5.0 stars, across a full practice operating history tells me two things simultaneously: patients are genuinely happy when they leave, and nobody has ever asked them to say so online. That gap is the diagnostic.
 
 The fixes exist, they are sequenced below, and none of them require a significant budget. Most require 30 minutes to a few hours of setup and a change in habit. The hard part is not the fix — it is recognizing that the work happening inside the clinic has been invisible to the city searching for exactly what this practice offers.
@@ -42,7 +44,7 @@ The secondary layer of this problem is that the GBP listing is generic where it 
 
 [SIDEBAR: "The advanced technology — 3D scanner, electric drills, digital X-ray — is exactly the kind of differentiation that prospective patients respond to. None of it appears in the GBP listing, the Instagram profile, or the blog (which has not published since 2018). The patient who would care most about this never finds out."]
 
-The operating hours add a smaller but real conversion friction. Wednesday is closed. Tuesday, Thursday, and Friday close at 4pm. The only evening window is Monday. A working adult searching for a dentist on a Tuesday at 5pm has no way to book Groove Dental until Monday of the following week — assuming there is a real-time booking option at all, which is not confirmed. The Monday evening hours are a differentiator that most practices can't match. But a differentiator that isn't marketed doesn't differentiate.
+The operating hours add a smaller but real conversion friction. Wednesday is closed. Tuesday, Thursday, and Friday close at 4pm. The only evening window is Monday. A working adult searching for a dentist on a Tuesday at 5pm has no way to book Groove Dental until Monday of the following week — and the appointments page is a contact form, not a real-time scheduler, so even submitting online puts them in a callback queue with no guaranteed response time. The Monday evening hours are a differentiator that most practices can't match. But a differentiator that requires a callback to activate doesn't fully convert.
 
 Groove Dental is doing the hard part — the actual clinical work — at a genuinely high level. The marketing side of this practice is operating as if the quality speaks for itself. In a city where Gallery Dental has built a 1,400-review digital authority, it does not.
 
@@ -114,9 +116,9 @@ One post per month minimum. This can be a patient education tip, a seasonal prom
 
 ---
 
-### Finding 3: The Booking Flow May Be Losing Patients After Hours
+### Finding 3: The Appointment Page Is a Contact Form — Not Real-Time Booking
 
-The appointment page exists at groovedental.ca/dental-appointments. Public data indicates a "book online" option, but the mechanism — real-time scheduling versus a contact form that requires a callback — could not be confirmed. If booking is callback-only, Groove Dental is asking motivated patients to wait.
+The appointment page at groovedental.ca/dental-appointments is a contact form. A patient who wants to book submits their name and reason for visit and waits for the practice to call back. There is no self-scheduling. No calendar. No confirmation. Just a form going into a queue.
 
 [PULL QUOTE: "A patient who submits a form at 6pm on a Tuesday and doesn't hear back by Wednesday noon has likely already scheduled somewhere else."]
 
@@ -124,16 +126,13 @@ The appointment page exists at groovedental.ca/dental-appointments. Public data 
 
 [STAT CALLOUT: 3 — Weekdays closing before 5pm (Tue, Thu, Fri) — Patients searching after work have a single evening window — Monday — to reach this practice by phone]
 
-Wednesday is closed. Tuesday, Thursday, and Friday close at 4pm. A working adult who decides on a Tuesday evening to find a new dentist cannot call Groove Dental until Thursday morning — and cannot call on Wednesday at all. If the online booking is a contact form rather than real-time scheduling, that patient has submitted a form into a queue with no guaranteed response time. At Gallery Dental or Smiles Dental Group, that same patient can self-schedule in under two minutes at 10pm on a Tuesday.
+Wednesday is closed. Tuesday, Thursday, and Friday close at 4pm. A working adult who decides on a Tuesday evening to find a new dentist cannot call Groove Dental until Thursday morning — and cannot call on Wednesday at all. That patient has submitted a form into a queue with no guaranteed response time. At Gallery Dental or Smiles Dental Group, that same patient can self-schedule in under two minutes at 10pm on a Tuesday.
 
-The Monday evening hours are genuinely valuable — 11am–7pm is a meaningful differentiator. But if the booking system doesn't support self-scheduling outside those hours, the differentiator is only partially converted to competitive advantage.
+The Monday evening hours are genuinely valuable — 11am–7pm is a meaningful differentiator. But a differentiator that requires a callback to activate isn't fully converting its potential.
 
 **Here's what I'd do**
 
-**Confirm the booking mechanism first:**
-Visit groovedental.ca/dental-appointments on a mobile device and attempt to book. If the result is a contact form or phone callback request, that is the gap. If real-time scheduling is already in place, this finding is partially resolved and the focus shifts to making it more prominent.
-
-**If callback-only — install real-time booking (1 week):**
+**Install real-time booking (1 week):**
 Jane App, NexHealth, or Weave integrate with most Canadian practice management platforms and provide real-time patient-facing scheduling. The investment is typically $150–$300/month and pays for itself with a single additional new patient per month. Embed the booking widget on the homepage, the appointments page, and the contact page. Make it the primary CTA.
 
 **Promote the Monday evening hours explicitly:**
@@ -151,7 +150,7 @@ Groove Dental uses a 3D digital scanner instead of traditional impressions. Quie
 
 **Why this matters**
 
-[STAT CALLOUT: ~50% — Estimated share of adults with moderate to severe dental anxiety — Technology that reduces discomfort is one of the most persuasive differentiators available to a general practice]
+[STAT CALLOUT: 40% — Alberta adults who put off dental work because of anxiety — H-Cube Marketing survey, n=1,000 — local data, not an estimate]
 
 A patient with dental anxiety searching for a new dentist in Edmonton is not reading About pages. They are scanning headlines, looking at photos, reading reviews for specific mentions of comfort and pain. If the GBP photos don't show the equipment. If the Instagram doesn't post about the no-impression experience. If the homepage headline doesn't mention quiet technology. That patient books somewhere else — not because Groove Dental isn't the right choice, but because the information that would make it the obvious choice wasn't visible.
 
@@ -222,12 +221,12 @@ Three posts per week on Instagram, mixing educational tips, before/after cases (
 - Set up automated post-visit review request via SMS or email (1–2 hours)
 - Update GBP categories to include Cosmetic Dentist, Dental Implants Provider, Emergency Dentist (30 minutes)
 - Write and publish a keyword-rich GBP description (45 minutes)
-- Confirm whether online booking is real-time or callback-only
+- Select a real-time booking tool (Jane App, NexHealth, or Weave) and begin setup
 
 **Next 30 days**
 
 - Upload 30–40 photos to GBP: exterior, interior, equipment (the 3D scanner especially), team
-- If booking is callback-only, select and install a real-time scheduling tool (Jane App, NexHealth, or Weave)
+- Complete real-time booking integration and embed widget on homepage, appointments page, and contact page
 - Add Monday evening hours and booking CTA to homepage prominently
 - Publish first GBP post (service spotlight or patient education tip)
 - Add technology differentiators (3D scanner, electric drills, digital X-ray) to homepage copy and GBP description
@@ -254,7 +253,11 @@ Three posts per week on Instagram, mixing educational tips, before/after cases (
 
 ## The Next Step
 
-Everything in this audit is yours to implement. The fixes are spelled out, in order of impact. Most practices won't get to them — not because they don't matter, but because there's never time. If you'd rather have someone run them for you, the Clarity Audit is the next step. We'll go deeper on the things that need it, prioritize against your specific goals, and give you a 90-day plan you can hand off. No pressure either way — the audit you're holding is the audit, not the appetizer.
+Everything in this audit is yours to implement. The fixes are spelled out, in order of impact. Most practices won't get to them — not because they don't matter, but because there's never time.
+
+If you want to go deeper, the full Clarity Audit is the next step — using your internal numbers and systems to build a 90-day plan tailored to your specific revenue goals, patient mix, and team capacity. It starts with a short intake form so I arrive prepared.
+
+Start the Full Clarity Audit → hcubemarketing.com/practice-audit-intake
 
 Trent Wehrhahn
 H-Cube Marketing
