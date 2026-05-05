@@ -1,4 +1,4 @@
-# 35 Years of Trust. A Fraction of the Proof.
+# 35 Years of Experience. One Year Into a New Chapter. A Fraction of the Proof.
 
 **5 findings. The fixes. In order of impact.**
 
@@ -14,9 +14,9 @@ I spent some time with Beacon Hill Dental's digital footprint this week. Here's 
 
 ## The 30-Second Read
 
-Beacon Hill Dental is a legitimately strong practice. Dr. Alan Chang has been delivering dental care in this community since 1988 — over 35 years. The 4.5-star rating is real, and patients who find the practice tend to stay. The team speaks eight languages. The hours run until 8PM three nights a week. Real-time online booking works. This is a practice with genuine depth and a loyal patient base.
+Beacon Hill Dental is a legitimately strong practice. Dr. Alan Chang brings over 35 years of dental career experience — he trained at the University of Alberta, practiced in Calgary, and spent years building a practice in Red Deer before returning to the city. About a year ago, he and his two grown children — both practicing dentists — acquired Beacon Hill Dental together. The 4.5-star rating is real, and patients who find the practice tend to stay. The team speaks eight languages. The hours run until 8PM three nights a week. Real-time online booking works. This is a practice with genuine depth and a loyal patient base under new, experienced ownership.
 
-[PULL QUOTE: "35 years of patient experience is not showing up where new patients are looking. That's the diagnosis."]
+[PULL QUOTE: "Dr. Chang's 35 years of dental experience — and the family practice he's built around it — is not showing up where new patients are looking. That's the diagnosis."]
 
 The problem is not the dentistry. It's the digital signal.
 
@@ -24,7 +24,7 @@ Beacon Hill Dental has 196 Google reviews. Right down the same road — 0.4 mile
 
 [STAT CALLOUT: 196 vs. 1,573 — Google reviews — Beacon Hill Dental vs. direct competitor on the same street]
 
-The core issue is this: Beacon Hill Dental has been delivering care that patients appreciate for three and a half decades, but there is no system in place to capture that experience as digital proof. Reviews arrive when a patient is motivated enough to leave one on their own — which happens rarely, irregularly, and at roughly half a review per month historically. The accumulation of goodwill from 35 years of dentistry is not showing up where new patients are making decisions.
+The core issue is this: Beacon Hill Dental has been delivering care that patients appreciate — and the Changs came in with the skills and community roots to build on that — but there is no system in place to capture that experience as digital proof. Reviews arrive when a patient is motivated enough to leave one on their own — which happens rarely, irregularly, and at roughly half a review per month historically. The goodwill that Dr. Chang and his team are building is not showing up where new patients are making decisions.
 
 Every one of the five findings in this document connects to that gap in some way. Some are root causes. Some are downstream consequences. Fixing the root causes resolves most of the rest.
 
@@ -34,7 +34,7 @@ Every one of the five findings in this document connects to that gap in some way
 
 The thing that stands out about Beacon Hill Dental is the gap between what the practice has built and what a stranger sees when they search for a dentist.
 
-Dr. Alan Chang graduated from the University of Alberta in 1988. By any reasonable standard, that's a landmark level of clinical experience. Patients describe him as calm, patient, and thorough — the exact attributes that most new patients want in a dentist and can't reliably assess until they're in the chair. The team speaks Mandarin, Cantonese, Filipino, Punjabi, Urdu, Hindi, and Vietnamese — a real competitive advantage in a northwest Calgary community with significant multilingual families who are actively looking for a dental practice that can communicate in their language. The hours extend until 8PM on Tuesday, Wednesday, and Thursday. Real-time online booking is live.
+Dr. Alan Chang has been practicing dentistry for over 35 years — he graduated from the University of Alberta, spent time in Calgary earlier in his career, and then built and ran his own practice in Red Deer, AB. About a year ago, he made a deliberate move: he and his two grown children, both now practicing dentists themselves, acquired Beacon Hill Dental together. That's an unusual story — a multi-generational dental family with deep roots in Alberta, choosing to invest in this community. Patients describe Dr. Chang as calm, patient, and thorough — the exact attributes that most new patients want in a dentist and can't reliably assess until they're in the chair. The team speaks Mandarin, Cantonese, Filipino, Punjabi, Urdu, Hindi, and Vietnamese — a real competitive advantage in a northwest Calgary community with significant multilingual families who are actively looking for a dental practice that can communicate in their language. The hours extend until 8PM on Tuesday, Wednesday, and Thursday. Real-time online booking is live.
 
 [PULL QUOTE: "The team speaks eight languages. That's not a footnote — that's a competitive differentiator that barely appears in the practice's online presence."]
 
@@ -46,9 +46,9 @@ The result is a practice that earns patient loyalty from the people who find it,
 
 [SIDEBAR: "Beacon Smiles Dental is at 12024 Sarcee Trail NW. Beacon Hill Dental is at 11634 Sarcee Trail NW. They are 0.4 miles apart. The review gap between them is 1,377 reviews."]
 
-The cross-cutting finding here is simple: the in-practice experience and the online signal are running at completely different speeds. The practice has been building trust in the chair for 35 years. The online reputation is running at about half a review per month. Those two numbers need to get closer together before any other marketing investment will produce its full return.
+The cross-cutting finding here is simple: the in-practice experience and the online signal are running at completely different speeds. Dr. Chang and his team are delivering care that earns patient loyalty. The online reputation is running at about half a review per month. Those two numbers need to get closer together before any other marketing investment will produce its full return.
 
-The good news is that this is a solvable problem. The fixes are not complex. They require consistency more than they require budget. And the foundation — 35 years of genuine patient satisfaction, a real 4.5-star rating, and extended hours that most competitors don't have — is already there. It just needs to be surfaced.
+The good news is that this is a solvable problem. The fixes are not complex. They require consistency more than they require budget. And the foundation — a genuine 4.5-star rating, a multi-generational family dental team with decades of combined experience, and extended hours that most competitors don't have — is already there. It just needs to be surfaced.
 
 ---
 
@@ -58,7 +58,7 @@ The good news is that this is a solvable problem. The fixes are not complex. The
 
 ### Finding 1: No Review Solicitation System — The Root Cause
 
-I noticed that Beacon Hill Dental has no visible system for asking patients to leave a Google review after their appointment. The evidence is in the numbers: 196 reviews over approximately 35 years of operation works out to roughly half a review per month historically. The most recent reviews visible on third-party listings are from October 2025 — six months ago as of this audit. That suggests a current velocity of 1–3 new reviews per month at most.
+I noticed that Beacon Hill Dental has no visible system for asking patients to leave a Google review after their appointment. The evidence is in the numbers: 196 reviews, accumulating at roughly half a review per month historically. The most recent reviews visible on third-party listings are from October 2025 — six months ago as of this audit. That suggests a current velocity of 1–3 new reviews per month at most.
 
 **Why this matters**
 
@@ -85,9 +85,9 @@ The goal is 8–10 new reviews per month within 90 days. Check the count weekly.
 
 ---
 
-### Finding 2: 196 Reviews for a 35-Year Practice
+### Finding 2: 196 Reviews and a Review Gap That Needs Closing
 
-I noticed that the gap between Beacon Hill Dental's actual tenure and its review footprint is significant — and visible to every prospective patient who looks. Dr. Alan Chang graduated in 1988. A 35-year-old practice with 196 Google reviews is a practice where patient satisfaction has been real, but the system for capturing that satisfaction as social proof has been absent.
+I noticed that the gap between Beacon Hill Dental's patient experience and its review footprint is significant — and visible to every prospective patient who looks. The practice has a 4.5-star rating and an ownership team with real depth: Dr. Alan Chang has over 35 years of dental career experience, and his two children — both dentists — joined the practice when the family acquired it about a year ago. That combination of experience and multi-generational commitment is genuinely compelling. But 196 Google reviews doesn't reflect it — because nobody has been systematically asking.
 
 [PULL QUOTE: "196 reviews is not a reflection of how good this practice is. It's a reflection of the fact that nobody has been asking."]
 
@@ -136,7 +136,7 @@ Log into the Google Business Profile dashboard at business.google.com. Navigate 
 **GBP description update (30 minutes):**
 Rewrite the description to be specific, keyword-rich, and current. A starting draft:
 
-*"Beacon Hill Dental has been serving NW Calgary families from our Sarcee Trail location since 1988. Led by Dr. Alan Chang and Dr. Kellie Chang, our team provides comprehensive dental care including Invisalign, dental implants, cosmetic dentistry, Guided Biofilm Therapy, and emergency dental services. We speak Mandarin, Cantonese, Punjabi, Tagalog, Urdu, Hindi, and Vietnamese. Open six days a week with evening appointments Tuesday through Thursday. Accepting new patients and the Canadian Dental Care Plan."*
+*"Beacon Hill Dental is a family-owned dental practice in NW Calgary, led by Dr. Alan Chang and his two children, who are also practicing dentists. With over 35 years of dental experience and deep roots in Alberta, our team provides comprehensive care including Invisalign, dental implants, cosmetic dentistry, Guided Biofilm Therapy, and emergency dental services. We speak Mandarin, Cantonese, Punjabi, Tagalog, Urdu, Hindi, and Vietnamese. Open six days a week with evening appointments Tuesday through Thursday. Accepting new patients and the Canadian Dental Care Plan."*
 
 **GBP posts (ongoing):**
 Start publishing one GBP post per week. Each post should take 5–10 minutes. Topics can mirror blog posts already being written, or highlight services, team members, or seasonal promotions. GBP posts reset in visibility after 7 days — consistent weekly posting keeps the listing active.
@@ -184,7 +184,7 @@ I noticed that the Beacon Hill Dental homepage asks prospective patients to "Boo
 
 A prospective patient who lands on the Beacon Hill Dental website has usually already passed the awareness stage — they found the practice somehow. The homepage's job is to convert that interest into a booked appointment. That conversion is harder when the page doesn't give the patient anything to grab onto beyond a generic "Book Online" button.
 
-The practice has real differentiators. A 35-year track record in the same neighbourhood signals stability and community roots — something that matters to families making a long-term dental decision. Eight languages spoken is a genuine advantage for a significant portion of NW Calgary's population. Evening hours three nights a week means working patients don't have to take time off. None of these are currently featured at the decision point.
+The practice has real differentiators. A family ownership team — Dr. Chang and his two dentist children — signals long-term commitment and genuine community investment, which matters to families making a long-term dental decision. Dr. Chang's 35+ years of career experience adds a depth of clinical credibility that newer practices can't match. Eight languages spoken is a genuine advantage for a significant portion of NW Calgary's population. Evening hours three nights a week means working patients don't have to take time off. None of these are currently featured at the decision point.
 
 A new patient offer adds a specific reason to act now rather than later. It doesn't need to be a deep discount — even a free consultation for new patients considering implants or Invisalign is enough to differentiate the booking CTA.
 
@@ -193,9 +193,9 @@ A new patient offer adds a specific reason to act now rather than later. It does
 **Homepage headline and subhead (update with SmileShop Marketing):**
 Replace the current generic subhead with something that surfaces the practice's actual differentiators. For example:
 
-*"35 years serving NW Calgary families. Evening appointments available. We speak your language."*
+*"Three dentists. One family. Evening appointments. We speak your language."*
 
-This tells the new patient three things immediately: the practice is established, it's accessible, and it may be able to serve them in their preferred language.
+This tells the new patient three things immediately: the practice is family-owned with depth of commitment, it's accessible, and it may be able to serve them in their preferred language. An alternative framing that leads with clinical experience: *"35+ years of dental experience. A family practice built for NW Calgary."*
 
 **New patient offer (coordinate with front desk — and review with ADA&C first):**
 The goal is a clear, specific reason to book at this practice rather than the next result. That could be a first-visit package, a consultation for a specific service, or a welcome message for new patients to the area. The exact language matters: dental advertising in Alberta is regulated by the Alberta Dental Association & College, and the ADA&C has specific guidelines around promotional language, pricing claims, and what constitutes an inducement. Before publishing any new patient offer, the practice should review the proposed wording against the ADA&C advertising guidelines and run it past their professional association if there's any question. "New to the area? Ask about our new patient welcome package" is a safe framing. Any language that mentions pricing, free services, or complimentary appointments needs to clear that review first.
