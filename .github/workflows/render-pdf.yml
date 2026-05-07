@@ -1,0 +1,101 @@
+name: Render Clarity Diagnostic PDF
+
+on:
+  push:
+    paths:
+      - 'samples/clarity_diagnostics/*.md'
+  workflow_dispatch:
+    inputs:
+      slug:
+        description: 'Practice slug (filename without _clarity_diagnostic.md)'
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci || npm install
+
+      - name: Determine slugs to render
+        id: slugs
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -n "${{ github.event.inputs.slug }}" ]]; then
+            echo "Manual dispatch slug: ${{ github.event.inputs.slug }}"
+            echo "slugs=${{ github.event.inputs.slug }}" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          BEFORE="${{ github.event.before }}"
+          AFTER="${{ github.event.after }}"
+          if [[ -z "$BEFORE" || "$BEFORE" == "0000000000000000000000000000000000000000" ]]; then
+            CHANGED=$(git ls-tree --name-only HEAD samples/clarity_diagnostics/ | grep '_clarity_diagnostic\.md$' || true)
+          else
+            CHANGED=$(git diff --name-only "$BEFORE" "$AFTER" -- samples/clarity_diagnostics/ | grep '_clarity_diagnostic\.md$' || true)
+          fi
+          SLUGS=""
+          while IFS= read -r f; do
+            [[ -z "$f" ]] && continue
+            base=$(basename "$f")
+            slug="${base%_clarity_diagnostic.md}"
+            SLUGS="$SLUGS $slug"
+          done <<< "$CHANGED"
+          SLUGS=$(echo "$SLUGS" | xargs || true)
+          echo "Detected slugs: '$SLUGS'"
+          echo "slugs=$SLUGS" >> "$GITHUB_OUTPUT"
+
+      - name: Render PDFs
+        if: steps.slugs.outputs.slugs != ''
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd samples
+          for slug in ${{ steps.slugs.outputs.slugs }}; do
+            echo "::group::Rendering $slug"
+            node ../generate-pdf.js "$slug"
+            echo "::endgroup::"
+          done
+
+      - name: Commit and push rendered PDFs
+        if: steps.slugs.outputs.slugs != ''
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.email "actions@github.com"
+          git config user.name "clarity-diagnostic-renderer-bot"
+          git add samples/deliverables/*.pdf || true
+          if git diff --cached --quiet; then
+            echo "No PDF changes to commit"
+            exit 0
+          fi
+          SLUGS_TRIM=$(echo "${{ steps.slugs.outputs.slugs }}" | xargs)
+          git commit -m "Render: ${SLUGS_TRIM} [skip ci]"
+          git pull --rebase origin main || true
+          git push origin HEAD:main
+
+      - name: Summary
+        if: steps.slugs.outputs.slugs != ''
+        shell: bash
+        run: |
+          echo "## Rendered" >> "$GITHUB_STEP_SUMMARY"
+          for slug in ${{ steps.slugs.outputs.slugs }}; do
+            echo "- \`samples/deliverables/${slug}_clarity_diagnostic.pdf\`" >> "$GITHUB_STEP_SUMMARY"
+          done
