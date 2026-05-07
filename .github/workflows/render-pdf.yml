@@ -65,6 +65,8 @@ jobs:
       - name: Render PDFs
         if: steps.slugs.outputs.slugs != ''
         shell: bash
+        env:
+          PUPPETEER_NO_SANDBOX: '1'
         run: |
           set -euo pipefail
           cd samples

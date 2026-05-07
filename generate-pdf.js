@@ -482,7 +482,8 @@ function renderNextStep(nextStep) {
 }
 
 async function renderPdf(htmlPath, pdfPath) {
-  const browser = await puppeteer.launch({ headless: 'new' });
+  const launchArgs = process.env.PUPPETEER_NO_SANDBOX === '1' ? ['--no-sandbox', '--disable-setuid-sandbox'] : [];
+  const browser = await puppeteer.launch({ headless: 'new', args: launchArgs });
   try {
     const page = await browser.newPage();
     await page.goto(`file://${htmlPath}`, { waitUntil: 'networkidle0' });
