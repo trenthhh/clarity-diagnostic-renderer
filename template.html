@@ -555,6 +555,31 @@
       .ranking-bar.is-empty {
         background: transparent;
       }
+      /* List variant for competitive_ranking when no item has explicit values.
+         Used when competitors are described qualitatively rather than with
+         comparable metrics. Each item becomes a card with the highlighted
+         entry standing out in orange. */
+      .competitive-ranking.is-list .ranking-list {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .competitive-ranking.is-list .ranking-card {
+        padding: 10px 14px;
+        border-left: 3px solid var(--gray-border);
+        font-size: 13px;
+        line-height: 1.4;
+      }
+      .competitive-ranking.is-list .ranking-card.is-highlight {
+        border-left-color: var(--orange);
+        background: var(--gray-light);
+      }
+      .competitive-ranking.is-list .ranking-card .ranking-name {
+        font-weight: 600;
+      }
+      .competitive-ranking.is-list .ranking-card.is-highlight .ranking-name {
+        color: var(--orange);
+      }
       .muted { color: var(--gray); }
       .empty-state {
         color: var(--gray);

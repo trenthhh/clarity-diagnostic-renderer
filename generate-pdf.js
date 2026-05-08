@@ -404,8 +404,25 @@ function renderGraphic(block) {
 
 function renderCompetitiveRanking(block) {
   const items = block.items || [];
+  const anyExplicit = items.some((item) => item.hasExplicitValue);
+  // When no item has an explicit "label: value" structure (e.g., the Rancho
+  // Mirage list of competitors described qualitatively in parens), render as
+  // a flat card list rather than misleading bar widths.
+  if (!anyExplicit) {
+    return `
+    <figure class="graphic-panel competitive-ranking is-list">
+      <div class="ranking-list">
+        ${items.map((item) => `
+          <div class="ranking-card${item.highlight ? ' is-highlight' : ''}">
+            <div class="ranking-name">${escapeHtml(item.name)}</div>
+          </div>
+        `).join('')}
+      </div>
+      ${block.caption ? `<figcaption class="graphic-caption">${escapeHtml(block.caption)}</figcaption>` : ''}
+    </figure>
+  `;
+  }
   const maxValue = Math.max(...items.map((item) => item.value), 1);
-  const anyNumeric = items.some((item) => item.value > 0);
   return `
     <figure class="graphic-panel competitive-ranking">
       <div class="ranking-rows">
@@ -413,7 +430,7 @@ function renderCompetitiveRanking(block) {
           const barText = item.displayValue || (item.value > 0 ? String(item.value) : '');
           const widthPct = item.value > 0
             ? Math.max(8, (item.value / maxValue) * 100)
-            : (anyNumeric ? 8 : 100);
+            : 8;
           return `
           <div class="ranking-row">
             <div class="ranking-name">${escapeHtml(item.name)}</div>
@@ -829,13 +846,18 @@ function parseGraphicPairs(data) {
     const colonIdx = trimmed.indexOf(':');
     const name = colonIdx >= 0 ? trimmed.slice(0, colonIdx).trim() : trimmed;
     const valueStr = colonIdx >= 0 ? trimmed.slice(colonIdx + 1).trim() : '';
-    // Extract first numeric sequence (handling thousands separators like 1,200)
-    const numMatch = (valueStr || trimmed).match(/(\d{1,3}(?:,\d{3})+|\d+(?:\.\d+)?)/);
+    // Only extract a numeric value when the user supplied an explicit
+    // "label: value" structure. For descriptive items like
+    // "Cros Dental (board-certified implantologist)" we don't want to grab
+    // the first number from the prose (e.g. "30+ years") and treat it as
+    // a comparable metric — it isn't one.
+    const numMatch = valueStr ? valueStr.match(/(\d{1,3}(?:,\d{3})+|\d+(?:\.\d+)?)/) : null;
     const numericValue = numMatch ? Number(numMatch[0].replace(/,/g, '')) : 0;
     return {
       name,
       value: numericValue,
       displayValue: valueStr || '',
+      hasExplicitValue: colonIdx >= 0,
     };
   }).filter((item) => item.name);
 }
