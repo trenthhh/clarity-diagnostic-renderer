@@ -77,12 +77,37 @@ function parseDiagnostic(markdown, practiceSlug) {
   });
   const text = cleanLines.join('\n');
 
-  const section30 = text.indexOf('## The 30-Second Read');
-  const sectionHow = text.indexOf('## How I See This');
-  const sectionFindings = text.indexOf('## The Findings');
-  const sectionOther = text.indexOf('## Other Things I Noticed');
-  const sectionSequence = text.indexOf("## How I'd Sequence the Fixes");
-  const sectionNext = text.indexOf('## The Next Step');
+  // Define section markers in document order. When a section is missing
+  // (returns -1 from indexOf), boundary detection falls through to the next
+  // section that DOES exist. This handles network-summary documents which
+  // skip "## The Findings" and add network-specific sections in its place.
+  const sectionDefs = [
+    { key: 'summary', heading: '## The 30-Second Read' },
+    { key: 'perspective', heading: '## How I See This' },
+    { key: 'findings', heading: '## The Findings' },
+    { key: 'other', heading: '## Other Things I Noticed' },
+    { key: 'sequence', heading: "## How I'd Sequence the Fixes" },
+    { key: 'next', heading: '## The Next Step' },
+  ];
+  const sectionPositions = {};
+  sectionDefs.forEach((def) => {
+    sectionPositions[def.key] = text.indexOf(def.heading);
+  });
+  const nextBoundaryAfter = (key) => {
+    const idx = sectionDefs.findIndex((d) => d.key === key);
+    for (let i = idx + 1; i < sectionDefs.length; i++) {
+      const pos = sectionPositions[sectionDefs[i].key];
+      if (pos >= 0) return pos;
+    }
+    return text.length;
+  };
+
+  const section30 = sectionPositions.summary;
+  const sectionHow = sectionPositions.perspective;
+  const sectionFindings = sectionPositions.findings;
+  const sectionOther = sectionPositions.other;
+  const sectionSequence = sectionPositions.sequence;
+  const sectionNext = sectionPositions.next;
 
   const coverChunk = text.slice(0, section30 >= 0 ? section30 : text.length).trim();
   const coverInfo = parseCover(coverChunk, practiceSlug);
@@ -90,11 +115,11 @@ function parseDiagnostic(markdown, practiceSlug) {
   const openerStart = coverInfo.coverBodyEndOffset || 0;
   const openerChunk = coverChunk.slice(openerStart).trim();
 
-  const summaryChunk = sliceSection(text, section30, sectionHow, '## The 30-Second Read');
-  const howChunk = sliceSection(text, sectionHow, sectionFindings, '## How I See This');
-  const findingsChunk = sliceSection(text, sectionFindings, sectionOther, '## The Findings');
-  const otherChunk = sliceSection(text, sectionOther, sectionSequence, '## Other Things I Noticed');
-  const sequenceChunk = sliceSection(text, sectionSequence, sectionNext, "## How I'd Sequence the Fixes");
+  const summaryChunk = sliceSection(text, section30, nextBoundaryAfter('summary'), '## The 30-Second Read');
+  const howChunk = sliceSection(text, sectionHow, nextBoundaryAfter('perspective'), '## How I See This');
+  const findingsChunk = sliceSection(text, sectionFindings, nextBoundaryAfter('findings'), '## The Findings');
+  const otherChunk = sliceSection(text, sectionOther, nextBoundaryAfter('other'), '## Other Things I Noticed');
+  const sequenceChunk = sliceSection(text, sectionSequence, nextBoundaryAfter('sequence'), "## How I'd Sequence the Fixes");
   const nextChunk = sliceSection(text, sectionNext, text.length, '## The Next Step');
 
   const findings = parseFindings(findingsChunk);
@@ -209,8 +234,15 @@ function parseFindings(chunk) {
   }).filter(Boolean);
 }
 
+// Strip any in-document H2 sections (e.g. "## Cross-Document Reference Map")
+// that may have bled into a section chunk because they sit between two core
+// sections. Keeps each section parser focused on its own content.
+function trimH2Bleed(chunk) {
+  return (chunk || '').replace(/\n##\s+[\s\S]*$/, '').trim();
+}
+
 function parseOtherItems(chunk) {
-  const cleaned = normalizeBlankLines(chunk);
+  const cleaned = normalizeBlankLines(trimH2Bleed(chunk));
   const matches = cleaned.match(/\*\*[^*]+\*\*[\s\S]*?(?=(?:\n\n\*\*[^*]+\*\*)|$)/g);
   return (matches || []).map((item) => item.trim());
 }
@@ -219,7 +251,7 @@ function parseSequence(chunk) {
   const sections = [];
   const regex = /\*\*(.+?):?\*\*([\s\S]*?)(?=(?:\n\n\*\*.+?:?\*\*)|$)/g;
   let match;
-  while ((match = regex.exec(normalizeBlankLines(chunk)))) {
+  while ((match = regex.exec(normalizeBlankLines(trimH2Bleed(chunk))))) {
     const title = match[1].trim();
     const bullets = match[2]
       .split('\n')
@@ -232,7 +264,7 @@ function parseSequence(chunk) {
 }
 
 function parseNextStep(chunk) {
-  const cleaned = normalizeBlankLines(chunk);
+  const cleaned = normalizeBlankLines(trimH2Bleed(chunk));
   const copy = cleaned
     .replace(/^\[Book the Clarity Audit[^\]]*\]\s*$/gim, '')
     .replace(/^Trent Wehrhahn.*$/gim, '')
@@ -371,20 +403,28 @@ function renderGraphic(block) {
 }
 
 function renderCompetitiveRanking(block) {
-  const maxValue = Math.max(...block.items.map((item) => item.value), 1);
+  const items = block.items || [];
+  const maxValue = Math.max(...items.map((item) => item.value), 1);
+  const anyNumeric = items.some((item) => item.value > 0);
   return `
     <figure class="graphic-panel competitive-ranking">
       <div class="ranking-rows">
-        ${block.items.map((item) => `
+        ${items.map((item) => {
+          const barText = item.displayValue || (item.value > 0 ? String(item.value) : '');
+          const widthPct = item.value > 0
+            ? Math.max(8, (item.value / maxValue) * 100)
+            : (anyNumeric ? 8 : 100);
+          return `
           <div class="ranking-row">
             <div class="ranking-name">${escapeHtml(item.name)}</div>
             <div class="ranking-bar-track">
-              <div class="ranking-bar${item.highlight ? ' is-highlight' : ''}" style="width: ${Math.max(6, (item.value / maxValue) * 100)}%">
-                <span class="ranking-value">${escapeHtml(String(item.value))}</span>
+              <div class="ranking-bar${item.highlight ? ' is-highlight' : ''}${!barText ? ' is-empty' : ''}" style="width: ${widthPct}%">
+                ${barText ? `<span class="ranking-value">${escapeHtml(barText)}</span>` : ''}
               </div>
             </div>
           </div>
-        `).join('')}
+        `;
+        }).join('')}
       </div>
       ${block.caption ? `<figcaption class="graphic-caption">${escapeHtml(block.caption)}</figcaption>` : ''}
     </figure>
@@ -392,13 +432,22 @@ function renderCompetitiveRanking(block) {
 }
 
 function renderComparisonStat(block) {
+  const items = block.items || [];
+  // Detect long-content comparisons (sentences, multi-word values). When any
+  // item value is more than a short keyword/number, switch to the stacked
+  // label-eyebrow / readable-value layout rather than the 42px headline grid.
+  const isLongContent = items.some((item) => {
+    const v = (item.value || '').trim();
+    return v.length > 20 || /\s/.test(v);
+  });
+  const variantClass = isLongContent ? ' is-stacked' : '';
   return `
-    <figure class="graphic-panel comparison-stat">
+    <figure class="graphic-panel comparison-stat${variantClass}">
       <div class="comparison-stat-grid">
-        ${block.items.map((item, index) => `
+        ${items.map((item, index) => `
           <div class="comparison-stat-item${index === block.highlightIndex ? ' is-highlight' : ''}">
-            <span class="comparison-stat-value">${escapeHtml(item.value)}</span>
             <span class="comparison-stat-label">${escapeHtml(item.label)}</span>
+            <span class="comparison-stat-value">${escapeHtml(item.value)}</span>
           </div>
         `).join('')}
       </div>
@@ -521,7 +570,26 @@ async function stampFooter({ inputPath, outputPath, practiceName, logoPath }) {
     const rightX = width - config.footer.right;
     const pageLabel = String(index + 1);
 
-    page.drawText(practiceName, {
+    // Strip redundant "| <city>, <state>" from the footer practice name.
+    // The full label appears on the cover; the footer only needs the
+    // identifying portion. Long names (e.g., "Rancho Santa Margarita")
+    // otherwise overlap the centered page number.
+    let footerPracticeName = practiceName.replace(/\s*\|\s*[^|]+$/, '').trim();
+    // Defensive truncation if the stripped name is still too wide for the
+    // available footer column (left margin → center page-number).
+    const pageLabelHalfWidth = font.widthOfTextAtSize(pageLabel, config.footer.textSize) / 2;
+    const maxFooterWidth = (width / 2) - leftX - pageLabelHalfWidth - 18;
+    if (font.widthOfTextAtSize(footerPracticeName, config.footer.textSize) > maxFooterWidth) {
+      while (
+        footerPracticeName.length > 4 &&
+        font.widthOfTextAtSize(footerPracticeName + '…', config.footer.textSize) > maxFooterWidth
+      ) {
+        footerPracticeName = footerPracticeName.slice(0, -1).replace(/[\s,—–-]+$/, '');
+      }
+      footerPracticeName = footerPracticeName + '…';
+    }
+
+    page.drawText(footerPracticeName, {
       x: leftX,
       y,
       size: config.footer.textSize,
@@ -657,20 +725,31 @@ function parseStructuredContent(text, options = {}) {
 function parseMarkerLine(line, options = {}) {
   if (!line) return null;
 
-  let match = line.match(/^\[PULL QUOTE:\s*"([^"]+)"\]$/i);
+  // Pull quote: tolerate straight or curly quotes, optional trailing characters
+  let match = line.match(/^\[PULL QUOTE:\s*["“']?(.+?)["”']?\]+\s*$/i);
   if (match) return { type: 'pull_quote', text: match[1].trim() };
 
-  match = line.match(/^\[STAT CALLOUT:\s*(.+?)\s+[—-]\s+(.+?)\s+[—-]\s+([^\]]+)\]$/i);
+  match = line.match(/^\[STAT CALLOUT:\s*(.+?)\]+\s*$/i);
   if (match) {
-    return {
-      type: 'stat_callout',
-      value: match[1].trim(),
-      label: match[2].trim(),
-      explanation: match[3].trim(),
-    };
+    let content = match[1].trim();
+    // Tolerate stray closing quotes/brackets at the end (e.g. ...confirm.'"]] )
+    content = content.replace(/[\]"'’”]+$/g, '').trim();
+    // Split on em-dash or hyphen-dash separator
+    const parts = content
+      .split(/\s+[—–-]\s+/)
+      .map((p) => p.trim())
+      .filter(Boolean);
+    if (parts.length >= 1) {
+      return {
+        type: 'stat_callout',
+        value: parts[0],
+        label: parts[1] || '',
+        explanation: parts.slice(2).join(' — '),
+      };
+    }
   }
 
-  match = line.match(/^\[SIDEBAR:\s*"([^"]+)"\]$/i);
+  match = line.match(/^\[SIDEBAR:\s*["“']?(.+?)["”']?\]+\s*$/i);
   if (match) return { type: 'sidebar', text: match[1].trim() };
 
   if (options.allowGraphics) {
@@ -741,14 +820,30 @@ function extractGraphicMarker(line) {
 }
 
 function parseGraphicPairs(data) {
-  return data.split(/\s*,\s*/).map((part) => {
-    const [name, value] = part.split(/\s*:\s*/);
-    return { name: (name || '').trim(), value: Number(String(value || '').replace(/[^\d.]/g, '')) || 0 };
+  // Prefer pipe separator (current source convention) — unambiguous with
+  // thousands-separator commas in numbers like "5,000". Fall back to comma
+  // for any older content that used commas.
+  const parts = data.includes('|') ? data.split(/\s*\|\s*/) : data.split(/\s*,\s*/);
+  return parts.map((part) => {
+    const trimmed = part.trim();
+    const colonIdx = trimmed.indexOf(':');
+    const name = colonIdx >= 0 ? trimmed.slice(0, colonIdx).trim() : trimmed;
+    const valueStr = colonIdx >= 0 ? trimmed.slice(colonIdx + 1).trim() : '';
+    // Extract first numeric sequence (handling thousands separators like 1,200)
+    const numMatch = (valueStr || trimmed).match(/(\d{1,3}(?:,\d{3})+|\d+(?:\.\d+)?)/);
+    const numericValue = numMatch ? Number(numMatch[0].replace(/,/g, '')) : 0;
+    return {
+      name,
+      value: numericValue,
+      displayValue: valueStr || '',
+    };
   }).filter((item) => item.name);
 }
 
 function parseComparisonStatData(data) {
-  return splitGraphicList(data).map((part) => {
+  // Pipe takes precedence over comma so thousands separators in numbers stay intact.
+  const parts = data.includes('|') ? data.split(/\s*\|\s*/) : splitGraphicList(data);
+  return parts.map((part) => {
     const cleaned = part.replace(/^"|"$/g, '').trim();
     const segments = cleaned.split(/\s+vs\s+/i);
     if (segments.length === 2) return segments.map(parseComparisonSegment);
