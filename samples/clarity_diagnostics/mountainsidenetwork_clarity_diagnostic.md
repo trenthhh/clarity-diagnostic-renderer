@@ -44,18 +44,18 @@ What makes this tractable is that none of it requires building from scratch. The
 
 ## The Visual Scorecard
 
-This is the page Dr. Wolfram should be able to scan in 30 seconds and immediately know which location has which gap, and which gaps are network-wide. The columns are the five locations. The rows are the patterns. **Bold cells mark where the location is most off-pattern within that row.**
+Five locations across ten patterns. Bold cells mark the single most off-pattern result per row.
 
-| Pattern | Yucaipa (2004) | La Quinta (2020) | Rancho Mirage (2021) | RSM (acq. 2021) | Lake Forest (acq.) |
+| Pattern | Yucaipa (2004) | La Quinta (2020) | Rancho Mirage (2021) | RSM (acq. 2021) | Lake Forest (acq. 2024) |
 |---|---|---|---|---|---|
 | Maps top-3 in own city | **#5 of 5** on "Yucaipa dentist" | #1 or top 3 on every search | Rank 4-6 on implant searches | Rank 3-5 | Rank 2-3 |
 | Google review volume | 695 | 786 (~38% of network) | 250-267 | **148** (network low) | 159-250 |
 | Real-time online booking | **None (callback)** | **None (callback)** | **None (callback)** | **None (callback)** | **None (callback)** |
-| GBP description optimization | Doesn't lead with Wolfram / Loma Linda / 22 years | **Doesn't name the 9-specialist roster** | Doesn't reference Bob Hope Dr / retiree market | Doesn't lead with Welcome's USC + 28 years | Doesn't lead with Harvard implant credential |
+| GBP description optimization | Doesn't lead with Wolfram / Loma Linda / 22 years | Doesn't name the 9-specialist roster | Doesn't reference Bob Hope Dr / retiree market | Doesn't lead with Welcome's USC + 28 years | Doesn't lead with Harvard implant credential |
 | Founding-date integrity | Schema description says "since 2015"; visible page "since 2004" | Consistent (since 2020) | Consistent (since 2021) | **Hero "since 2021" / body "since 2014" — 7-year gap** | **Hero "since 2024" / body "since 2018" — 6-year gap** |
 | Per-location social activity | FB ~8 likes; no IG | FB ~30 likes; IG @msidentlaquinta 62 followers / 124 posts | FB exists; no IG | FB exists; no IG | FB exists; no IG |
 | Hours coverage | 7am Thursday opens (unique in network) | M-Th 8-5; F 8-2 | M-Th 8-5; F 8-2 | **M-Th 8-5; F closed** (only network location) | M-Th 8-5; F 8-2 |
-| Doctor names featured | Dr. Wolfram on page (not in hero / not in GBP) | **Specialists in reviews; not in GBP / not on per-specialty pages** | Dr. Castillo / Dr. Deborah in reviews | Dr. Welcome in title (not in GBP description) | Drs. Chang & Azimi in title (not in hero) |
+| Doctor names featured | Dr. Wolfram on page (not in hero / not in GBP) | Specialists in reviews; not in GBP / not on per-specialty pages | Dr. Castillo / Dr. Deborah in reviews | Dr. Welcome in title (not in GBP description) | Drs. Chang & Azimi in title (not in hero) |
 | Service-specific page depth | **No /yucaipa-implants/, /yucaipa-invisalign/, /yucaipa-cosmetic/ pages** | "9 dentists" claim with no per-specialty pages | Prosthodontic / full-mouth focus underdeveloped | Endo / perio focus underdeveloped | Pediatric / ortho / Invisalign emphasis with same-day buried in hero |
 | Review platform diversification | Yelp 17; Healthgrades 2 (Wolfram personal) | Strong Google focus; multi-platform thin | Yelp 27 | **Google 148 / Yelp 14 — 10x platform gap** | Mid-tier multi-platform |
 
@@ -139,7 +139,7 @@ I noticed that two of the five location pages tell two different founding storie
 
 **Why this matters**
 
-[STAT CALLOUT: 7-year and 6-year — Founding-date gaps on the same page at RSM and Lake Forest — On a brand whose homepage promise is "Where we Believe in HONEST Dentistry"]
+[STAT CALLOUT: 7-year and 6-year — Founding-date gaps on the same page at RSM and Lake Forest — On a brand promising HONEST Dentistry.]
 
 The brand promise of the entire network is *"Where we Believe in HONEST Dentistry."* Two of five location pages contradict that promise on themselves. A patient who reads carefully — and the patients who read carefully are usually the high-LTV ones — sees the inconsistency. A patient who reads only the hero loses six or seven years of practice history that should be the credibility signal.
 
@@ -187,7 +187,7 @@ This isn't just a copy edit. The 5,000 number traces to a schema definition some
 
 ---
 
-### Finding 5: 100 Facebook Likes. 25,000 Patients.
+### Finding 5: The Network's Presence Layer Is Pointing the Wrong Way.
 
 I noticed five separate Facebook pages — Yucaipa (~8 likes), La Quinta (~30 likes), Rancho Mirage, Rancho Santa Margarita, Lake Forest. Combined Facebook engagement: under 100 likes for a 22-year, 25,000-patient network. One identifiable Instagram account: `@msidentlaquinta`, 62 followers, 124 posts. The footer of `mountainside-dental.com` links to generic `@mountainsidedental` social handles — but the Instagram URL the network's structured data points to resolves to "Mountainside Family Dental," an unrelated practice with 9 followers and 53 posts. The network's `sameAs` schema is telling Google to associate Mountainside Dental Group with a competitor's Instagram account.
 
@@ -257,7 +257,7 @@ The growth path from Yucaipa to five locations was deliberate, not opportunistic
 
 [PULL QUOTE: "Five locations. Twenty-two years. Three generations of Loma Linda dental tradition. No DSO. No private equity. The story most networks of this size can't tell anymore."]
 
-The five locations followed in order — La Quinta in 2020 as the Coachella Valley hub with nine specialists under one roof; Rancho Mirage in 2021 as the affluent retiree-market satellite on Bob Hope Drive; Rancho Santa Margarita acquired in 2021 (Dr. Welcome's 12-year practice integrated into the network); Lake Forest acquired more recently (Drs. Chang and Azimi's Harvard-trained implant practice). Approximately 25,000 patients across the network. A flagship that operates at specialty depth. Acquired locations that brought existing patient bases and 25-plus-year clinical credentials.
+The five locations followed in order — La Quinta in 2020 as the Coachella Valley hub with nine specialists under one roof; Rancho Mirage in 2021 as the affluent retiree-market satellite on Bob Hope Drive; Rancho Santa Margarita acquired in 2021 (Dr. Welcome's 12-year practice integrated into the network); Lake Forest acquired in 2024 (Drs. Chang and Azimi's Harvard-trained implant practice, founded 2018). Approximately 25,000 patients across the network. A flagship that operates at specialty depth. Acquired locations that brought existing patient bases and 25-plus-year clinical credentials.
 
 The reason this story matters to the diagnostic is that the network's positioning lives or dies on it. *"Where we Believe in HONEST Dentistry"* is the right brand promise for a 22-year independent network with a three-generation Loma Linda heritage. It's the wrong brand promise for a network whose pages disagree with themselves about when they opened. The founding-date conflicts at RSM and Lake Forest aren't typos — they're a brand-promise problem. The Yucaipa visibility gap isn't just a SEO problem — it's a story-distribution problem. The 5,000-vs-25,000 patient counter isn't just a copy edit — it's a network-scale problem.
 

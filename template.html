@@ -132,6 +132,8 @@
         color: var(--black);
         margin: 22px 0 8px;
         letter-spacing: -0.01em;
+        break-after: avoid;
+        page-break-after: avoid;
       }
       .body-copy h3, .finding-opening h3, .finding-why h3, .finding-do h3, .next-step-copy h3, .opener h3 {
         font-size: 14px;
@@ -262,6 +264,12 @@
         letter-spacing: 0.08em;
         text-transform: uppercase;
         color: var(--gray);
+        /* Prevent mid-word breaks in long labels (e.g. "PATIENT VOLUME"
+           splitting to "PATI / ENT" when uppercase + letter-spacing makes
+           the label wrap awkwardly inside the centered callout container). */
+        word-break: keep-all;
+        overflow-wrap: normal;
+        hyphens: manual;
       }
       .stat-callout-explanation {
         margin-top: 8px;
@@ -530,6 +538,8 @@
         margin: 18px 0;
         break-inside: avoid;
         page-break-inside: avoid;
+        break-before: avoid;
+        page-break-before: avoid;
         table-layout: fixed;
       }
       th, td {
