@@ -513,32 +513,33 @@
     margin-bottom: 14px;
   }
   .priorities-list {
-    list-style: none;
-    counter-reset: priority;
-    padding: 0;
-    margin: 0;
+    /* Plain block container — numbers live in the DOM, not in CSS counters,
+       so PDF viewers and text extractors always see the items in the
+       intended reading order. */
   }
-  .priorities-list li {
-    counter-increment: priority;
-    position: relative;
-    padding: 4px 0 4px 32px;
+  .priority-item {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    padding: 4px 0;
     font-size: 13.5px;
     line-height: 1.5;
     color: var(--black);
   }
-  .priorities-list li + li {
-    margin-top: 4px;
+  .priority-item + .priority-item {
+    margin-top: 2px;
   }
-  .priorities-list li::before {
-    content: counter(priority);
-    position: absolute;
-    left: 0; top: 4px;
-    width: 22px;
-    text-align: left;
+  .priority-num {
+    flex: 0 0 auto;
+    width: 18px;
     color: var(--orange);
     font-weight: 700;
     font-size: 13.5px;
     line-height: 1.5;
+    text-align: left;
+  }
+  .priority-text {
+    flex: 1 1 auto;
   }
 
   .closing-line {
@@ -820,13 +821,13 @@
 
   <div class="priorities-callout">
     <div class="priorities-eyebrow">Likely first priorities</div>
-    <ol class="priorities-list">
-      <li>Confirm the network-level trust signals.</li>
-      <li>Reduce appointment friction.</li>
-      <li>Standardize the Google Business Profile layer.</li>
-      <li>Clarify the practice-history story across the acquired locations.</li>
-      <li>Build a 90-day visibility and conversion plan.</li>
-    </ol>
+    <div class="priorities-list">
+      <div class="priority-item"><span class="priority-num">1</span><span class="priority-text">Confirm the network-level trust signals.</span></div>
+      <div class="priority-item"><span class="priority-num">2</span><span class="priority-text">Reduce appointment friction.</span></div>
+      <div class="priority-item"><span class="priority-num">3</span><span class="priority-text">Standardize the Google Business Profile layer.</span></div>
+      <div class="priority-item"><span class="priority-num">4</span><span class="priority-text">Clarify the practice-history story across the acquired locations.</span></div>
+      <div class="priority-item"><span class="priority-num">5</span><span class="priority-text">Build a 90-day visibility and conversion plan.</span></div>
+    </div>
   </div>
 
   <p class="closing-line">No pressure either way — I thought it was worth sharing.</p>
