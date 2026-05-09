@@ -471,8 +471,8 @@
     text-decoration: none;
   }
 
-  /* Page-end signature: separated from the CTA box, sits at the bottom of
-     page 5 as a quiet footer block — clearly distinct from the CTA chrome. */
+  /* Page-end signature: standalone footer block at the bottom of page 5,
+     separated from preceding content by a thin divider. */
   .page-end-signature {
     margin-top: 22px;
     padding-top: 16px;
@@ -484,6 +484,69 @@
   .page-end-signature .name {
     color: var(--black);
     font-weight: 600;
+  }
+
+  /* ---- PAGE 5 — Closing page ---- */
+  .closing-body {
+    max-width: 94%;
+  }
+  .closing-body p {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--black);
+    margin-bottom: 14px;
+  }
+
+  .priorities-callout {
+    margin: 30px 0 26px;
+    padding: 22px 26px 24px;
+    background: var(--gray-light);
+    border-left: 4px solid var(--orange);
+    border-radius: 4px;
+  }
+  .priorities-eyebrow {
+    color: var(--orange);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .priorities-list {
+    list-style: none;
+    counter-reset: priority;
+    padding: 0;
+    margin: 0;
+  }
+  .priorities-list li {
+    counter-increment: priority;
+    position: relative;
+    padding: 4px 0 4px 32px;
+    font-size: 13.5px;
+    line-height: 1.5;
+    color: var(--black);
+  }
+  .priorities-list li + li {
+    margin-top: 4px;
+  }
+  .priorities-list li::before {
+    content: counter(priority);
+    position: absolute;
+    left: 0; top: 4px;
+    width: 22px;
+    text-align: left;
+    color: var(--orange);
+    font-weight: 700;
+    font-size: 13.5px;
+    line-height: 1.5;
+  }
+
+  .closing-line {
+    margin: 0 0 6px;
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: var(--gray);
+    font-style: italic;
   }
 
   /* (No fixed footer — the @page bottom margin keeps a clean 0.7in band at the
@@ -745,48 +808,28 @@
 </section>
 
 
-<!-- ======== PAGE 5 — SEQUENCE + CTA ======== -->
-<section class="page">
+<!-- ======== PAGE 5 — CLOSING PAGE ======== -->
+<section class="page closing-page">
   <div class="section-eyebrow">A Suggested Path Forward</div>
-  <h2 class="section-header">A 90-Day Sequence and an Open Door</h2>
-  <p class="section-intro">A practical sequence ordered by where the network would likely see the fastest visibility and conversion lift. None of these requires new clinical capability — they are system and consistency moves.</p>
+  <h2 class="section-header">A short conversation before a full plan</h2>
 
-  <div class="sequence-grid">
-    <div class="sequence-block">
-      <h3>This week</h3>
-      <ul>
-        <li>Confirm the actual patient count and update the homepage trust counter.</li>
-        <li>Fix the most visible founding-date inconsistencies.</li>
-        <li>Correct any schema or social-profile mismatches surfacing in branded search.</li>
-        <li>Choose a real-time booking pilot location, most likely La Quinta.</li>
-      </ul>
-    </div>
-
-    <div class="sequence-block">
-      <h3>Next 30 days</h3>
-      <ul>
-        <li>Standardize GBP naming, categories, descriptions, and posting cadence across all five.</li>
-        <li>Bring each location's specific differentiators into GBP and location-page copy.</li>
-        <li>Resolve legacy domain and directory consistency issues across the major aggregators.</li>
-        <li>Begin consolidating the social presence into a network-level strategy.</li>
-      </ul>
-    </div>
-
-    <div class="sequence-block">
-      <h3>30 to 90 days</h3>
-      <ul>
-        <li>Measure the La Quinta real-time booking pilot and review the after-hours lift.</li>
-        <li>Roll the successful workflow to the other four locations sequentially.</li>
-        <li>Build location-specific service pages where visibility gaps exist.</li>
-        <li>Establish a quarterly Maps / GBP / review / NAP audit rhythm.</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="cta-section">
+  <div class="closing-body">
     <p>This short diagnostic is not meant to be a complete teardown or a finished implementation plan. It is a first pass at the patterns that stood out from the outside — and a starting frame, if it is useful, for a real conversation.</p>
-    <p>If any of this lands, I would be happy to walk through the findings, validate what is accurate against your own internal view, and help prioritize what is worth acting on first. No pressure either way.</p>
+    <p>If any of this lands, I would be happy to walk through the findings, validate what is accurate against your own internal view, and help prioritize what is worth acting on first.</p>
   </div>
+
+  <div class="priorities-callout">
+    <div class="priorities-eyebrow">Likely first priorities</div>
+    <ol class="priorities-list">
+      <li>Confirm the network-level trust signals.</li>
+      <li>Reduce appointment friction.</li>
+      <li>Standardize the Google Business Profile layer.</li>
+      <li>Clarify the practice-history story across the acquired locations.</li>
+      <li>Build a 90-day visibility and conversion plan.</li>
+    </ol>
+  </div>
+
+  <p class="closing-line">No pressure either way — I thought it was worth sharing.</p>
 
   <div class="page-end-signature">
     <div class="name">Trent Wehrhahn</div>
