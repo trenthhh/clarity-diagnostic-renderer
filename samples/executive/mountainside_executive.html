@@ -396,26 +396,28 @@
     color: var(--black);
   }
 
-  /* ---- PAGE 5: SEQUENCE + CTA ---- */
+  /* ---- PAGE 5: SEQUENCE + CTA — 3-column timing layout ---- */
   .sequence-grid {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 10px;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 14px;
+    align-items: stretch;
   }
   .sequence-block {
     page-break-inside: avoid;
     break-inside: avoid;
-    padding: 11px 16px;
+    padding: 14px 14px 14px 16px;
     background: var(--gray-light);
-    border-left: 3px solid var(--orange);
+    border-top: 3px solid var(--orange);
+    border-radius: 4px;
   }
   .sequence-block h3 {
     color: var(--orange);
-    font-size: 12.5px;
+    font-size: 11.5px;
     line-height: 1.2;
-    font-weight: 600;
-    margin-bottom: 6px;
-    letter-spacing: 0.04em;
+    font-weight: 700;
+    margin-bottom: 10px;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
   }
   .sequence-block ul {
@@ -424,17 +426,20 @@
     margin: 0;
   }
   .sequence-block li {
-    font-size: 11.8px;
+    font-size: 11px;
     line-height: 1.45;
     color: var(--black);
-    padding: 2px 0 2px 14px;
+    padding: 4px 0 4px 12px;
     position: relative;
+  }
+  .sequence-block li + li {
+    margin-top: 2px;
   }
   .sequence-block li::before {
     content: '';
     position: absolute;
-    left: 0; top: 9px;
-    width: 5px; height: 5px;
+    left: 0; top: 10px;
+    width: 4px; height: 4px;
     border-radius: 50%;
     background: var(--orange);
   }
@@ -525,7 +530,7 @@
   </div>
 
   <div class="cover-opening">
-    <p>I noticed Mountainside's La Quinta office while traveling in Southern California recently, and after a quick look at the broader network the same impression held: this is a strong, established independent dental group. The kind of practice the digital presence should be reinforcing — and from the outside, it appears to be doing only some of that work.</p>
+    <p>I noticed Mountainside's La Quinta office while traveling in Southern California recently, and after a quick look at the broader network the same impression held: this is a strong, established independent dental group. It looks like the kind of practice the digital presence should be reinforcing at every touchpoint. From the outside, it appears to be doing some of that work, but not as consistently as the network deserves.</p>
     <p>Mountainside appears to have already done the hard part: clinical scale, multi-location presence, patient trust, and twenty-two years of independent ownership. The opportunity is that the digital system does not yet seem to make that strength as visible as it could be.</p>
     <p>This document is a short executive review of the patterns I'd want to talk through, ordered by what looks like the highest leverage. It is meant as a starting frame for a conversation, not a finished plan.</p>
   </div>
@@ -595,7 +600,7 @@
       <div class="finding-content">
         <h3>Social and legacy digital assets are fragmented</h3>
         <p>The social footprint appears split across multiple small location-level pages, and a legacy Dr. Wolfram domain still appears in branded search. From a patient's cross-channel research, the network is harder to read than its real scale suggests.</p>
-        <p class="why-it-matters">Patients increasingly validate practices across multiple channels before booking. The network reads smaller than it is.</p>
+        <p class="why-it-matters">Patients increasingly validate practices across multiple channels before booking. The network may appear smaller and less coordinated than it actually is.</p>
       </div>
     </li>
   </ol>
@@ -739,30 +744,30 @@
     <div class="sequence-block">
       <h3>This week</h3>
       <ul>
-        <li>Confirm the actual patient count and update the homepage trust counter to reflect it</li>
-        <li>Fix the most visible founding-date inconsistencies across the location pages</li>
-        <li>Correct any schema or social-profile mismatches surfacing in branded search</li>
-        <li>Choose a real-time booking pilot location (most likely La Quinta)</li>
+        <li>Confirm the actual patient count and update the homepage trust counter.</li>
+        <li>Fix the most visible founding-date inconsistencies.</li>
+        <li>Correct any schema or social-profile mismatches surfacing in branded search.</li>
+        <li>Choose a real-time booking pilot location, most likely La Quinta.</li>
       </ul>
     </div>
 
     <div class="sequence-block">
       <h3>Next 30 days</h3>
       <ul>
-        <li>Standardize Google Business Profile naming, categories, descriptions, and posting cadence across all five</li>
-        <li>Bring each location's specific differentiators into GBP and location-page copy</li>
-        <li>Resolve legacy domain and directory consistency issues across the major aggregators</li>
-        <li>Begin consolidating the social presence into a network-level strategy</li>
+        <li>Standardize GBP naming, categories, descriptions, and posting cadence across all five.</li>
+        <li>Bring each location's specific differentiators into GBP and location-page copy.</li>
+        <li>Resolve legacy domain and directory consistency issues across the major aggregators.</li>
+        <li>Begin consolidating the social presence into a network-level strategy.</li>
       </ul>
     </div>
 
     <div class="sequence-block">
       <h3>30 to 90 days</h3>
       <ul>
-        <li>Measure the La Quinta real-time booking pilot and review the after-hours-booking lift</li>
-        <li>Roll the successful workflow to the other four locations sequentially</li>
-        <li>Build location-specific service pages where visibility gaps exist</li>
-        <li>Establish a quarterly Maps / GBP / review / NAP audit rhythm</li>
+        <li>Measure the La Quinta real-time booking pilot and review the after-hours lift.</li>
+        <li>Roll the successful workflow to the other four locations sequentially.</li>
+        <li>Build location-specific service pages where visibility gaps exist.</li>
+        <li>Establish a quarterly Maps / GBP / review / NAP audit rhythm.</li>
       </ul>
     </div>
   </div>
