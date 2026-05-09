@@ -1,0 +1,64 @@
+name: Render Executive PDF
+
+on:
+  workflow_dispatch:
+    inputs:
+      slug:
+        description: 'Executive HTML slug (filename without _executive.html)'
+        required: true
+        type: string
+        default: 'mountainside'
+
+permissions:
+  contents: write
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci || npm install
+
+      - name: Render executive PDF
+        shell: bash
+        env:
+          PUPPETEER_NO_SANDBOX: '1'
+        run: |
+          set -euo pipefail
+          slug="${{ github.event.inputs.slug }}"
+          input="samples/executive/${slug}_executive.html"
+          output="samples/executive/${slug}_executive.pdf"
+          if [ ! -f "$input" ]; then
+            echo "Executive HTML not found: $input"
+            exit 1
+          fi
+          node generate-executive-pdf.js "$input" "$output"
+          ls -la samples/executive/
+
+      - name: Commit and push rendered executive PDF
+        shell: bash
+        run: |
+          set -euo pipefail
+          slug="${{ github.event.inputs.slug }}"
+          git config user.email "renderer@h-cube.local"
+          git config user.name "Clarity Diagnostic Renderer"
+          git add samples/executive/${slug}_executive.pdf
+          if git diff --cached --quiet; then
+            echo "No PDF changes to commit"
+          else
+            git commit -m "Render executive PDF: ${slug}"
+            git push origin HEAD:${GITHUB_REF#refs/heads/}
+          fi
