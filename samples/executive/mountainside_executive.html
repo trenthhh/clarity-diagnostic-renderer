@@ -475,6 +475,21 @@
     text-decoration: none;
   }
 
+  /* Page-end signature: separated from the CTA box, sits at the bottom of
+     page 5 as a quiet footer block — clearly distinct from the CTA chrome. */
+  .page-end-signature {
+    margin-top: 22px;
+    padding-top: 16px;
+    border-top: 1px solid var(--gray-border);
+    font-size: 12px;
+    line-height: 1.65;
+    color: var(--gray);
+  }
+  .page-end-signature .name {
+    color: var(--black);
+    font-weight: 600;
+  }
+
   /* (No fixed footer — the @page bottom margin keeps a clean 0.7in band at the
      foot of every continuation page; a position:fixed footer here was producing
      a phantom 8th page in PDF output.) */
@@ -775,11 +790,12 @@
   <div class="cta-section">
     <p>This short diagnostic is not meant to be a complete teardown or a finished implementation plan. It is a first pass at the patterns that stood out from the outside — and a starting frame, if it is useful, for a real conversation.</p>
     <p>If any of this lands, I would be happy to walk through the findings, validate what is accurate against your own internal view, and help prioritize what is worth acting on first. No pressure either way.</p>
-    <div class="signature">
-      <div class="name">Trent Wehrhahn</div>
-      <div>H-Cube Marketing</div>
-      <div>trent@hcubemarketing.com · hcubemarketing.com</div>
-    </div>
+  </div>
+
+  <div class="page-end-signature">
+    <div class="name">Trent Wehrhahn</div>
+    <div>H-Cube Marketing</div>
+    <div>trent@hcubemarketing.com · hcubemarketing.com</div>
   </div>
 </section>
 
